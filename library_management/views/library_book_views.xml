@@ -1,0 +1,90 @@
+<odoo>
+ <record model="ir.ui.view" id="view_library_book_list">
+    <field name="name">library.book.list</field>
+    <field name="model">library.book</field>
+    <field name="arch" type="xml">
+        <list decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+            <field name="title"/>
+            <field name="author_id"/>
+            <field name="genre_id"/>
+            <field name="isbn"/>
+            <field name="publish_date"/>
+            <field name="is_available"/>
+            <button name="action_view_recommendations"
+                    type="object"
+                    string="View Recommendations"
+                    class="oe_highlight btn-recommend"/>
+            <button name="action_quick_borrow"
+                    type="object"
+                    string="Quick Borrow"
+                    icon="fa-book"
+                    class="oe_highlight btn-borrow"/>        
+        </list>
+    </field>
+ </record>
+
+    <record id="view_library_book_form" model="ir.ui.view">
+    <field name="name">library.book.form</field>
+    <field name="model">library.book</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet class="library-book-form">
+                <group class="group-primary">
+                    <field name="title"/>
+                    <field name="author_id"/>
+                </group>
+                <group class="group-secondary">
+                    <field name="genre_id"/>
+                    <field name="isbn"/>
+                </group>
+                <group class="group-tertiary">
+                    <field name="publish_date"/>
+                    <field name="description"/>
+                    <field name="is_available"/>
+                </group>
+                <notebook>
+                    <page string="Recommendations" class="recommendations-tab" collapsible="1">
+                        <div class="alert alert-info recommendation-note">
+                            You can suggest these recommended books to the client based on this book's genre.
+                        </div>
+                        <field name="recommended_book_ids" widget="many2many_tags" readonly="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_library_book_search" model="ir.ui.view">
+        <field name="name">library.book.search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search string="Search Books">
+                <field name="title"/>
+                <field name="author_id"/>
+                <field name="genre_id"/>
+                <filter string="Available" name="available" domain="[('is_available', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_library_book_recommendations" model="ir.ui.view">
+    <field name="name">library.book.recommendations</field>
+    <field name="model">library.book</field>
+    <field name="arch" type="xml">
+        <form string="Recommendations">
+            <sheet class="library-recommendations-popup">
+                <div class="alert alert-info recommendation-note">
+                    You can suggest these recommended books to the client based on this book's genre.
+                </div>
+                <field name="recommended_book_ids" widget="many2many_tags" readonly="1"/>
+            </sheet>
+        </form>
+    </field>
+</record>
+</odoo>

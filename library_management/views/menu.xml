@@ -1,0 +1,30 @@
+<odoo>
+    <!-- Top-Level Library Menu -->
+    <menuitem id="menu_library_root" name="Library" sequence="10"/>
+
+    <!-- Books Menu -->
+    <menuitem id="menu_library_books" name="Books"
+              parent="menu_library_root"
+              action="action_library_book"
+              sequence="20"/>
+
+    <!-- Authors Menu -->
+    <menuitem id="menu_library_authors" name="Authors"
+              parent="menu_library_root"
+              action="action_library_author"
+              sequence="30"/>
+
+    <!-- Borrow Records Menu -->
+    <menuitem id="menu_library_borrows" name="Borrow Records"
+              parent="menu_library_root"
+              action="action_library_borrow"
+              sequence="40"/>
+
+    <!-- Genres Menu -->
+     <menuitem id="menu_library_genres" name="Genres"
+              parent="menu_library_root"
+              action="action_library_genre"
+              sequence="50"/>          
+
+
+</odoo>

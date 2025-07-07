@@ -1,0 +1,284 @@
+.o_form_view .o_field_widget[name="state"] {
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.o_form_view .o_group .o_field_widget[name="borrow_date"],
+.o_form_view .o_group .o_field_widget[name="book_id"],
+.o_form_view .o_group .o_field_widget[name="borrower_id"],
+.o_form_view .o_group .o_field_widget[name="return_date"] {
+    background-color: #f0f8ff;
+    border: 1px solid #dcdcdc;
+}
+
+/* Highlight overdue records in the list view */
+.o_list_view tr.o_list_row_decoration-danger {
+    color: #c62828;
+    font-weight: bold;
+}
+
+/* Returned - Soft Green */
+.o_list_view tr.o_list_row_decoration-success {
+    background-color: #e8f5e9;
+}
+
+/* Confirmed (Borrowed) - Light Yellow */
+.o_list_view tr.o_list_row_decoration-warning {
+    background-color: #fffde7;
+}
+
+/* Borrow form header button styling */
+.library-borrow-form .oe_highlight {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: white !important;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* Statusbar spacing and emphasis */
+.library-borrow-form .o_statusbar {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Group styling in form view */
+.library-borrow-form .o_group {
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+/* ===== Bold Book List View Styling ===== */
+
+/* Available books: green background */
+.o_list_view tbody tr.o_list_row_decoration-success {
+    background-color: #e8f5e9;
+}
+
+/* Unavailable books: bold red background */
+.o_list_view tbody tr.o_list_row_decoration-danger {
+    background-color: #ffebee;
+    color: #c62828;
+    font-weight: bold;
+}
+/* Book List Styling */
+.library-book-list .btn-recommend {
+    background-color: #5c7cfa;
+    color: white;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.library-book-list .btn-borrow {
+    background-color: #40c057;
+    color: white;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+/* Hover Effects for buttons */
+.library-book-list .btn-recommend:hover {
+    background-color: #364fc7;
+}
+
+.library-book-list .btn-borrow:hover {
+    background-color: #2b8a3e;
+}
+
+/* Book Form Layout */
+.library-book-form .group-primary {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.library-book-form .group-secondary {
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.library-book-form .group-tertiary {
+    background-color: #e7f5ff;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+/* Recommendation Notebook Styling */
+.recommendations-tab .recommendation-note {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Recommendations Popup Styling */
+.library-recommendations-popup {
+    padding: 15px;
+    background-color: #f1f3f5;
+    border-radius: 6px;
+}
+
+/* ===== Bold Book Form Styling ===== */
+.library-book-form .o_group {
+    background: #e3f2fd;
+    padding: 15px;
+    border: 2px solid #2196f3;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.library-book-form textarea {
+    min-height: 120px;
+    background: #fff3e0;
+    border: 2px solid #ff9800;
+    border-radius: 4px;
+}
+
+.library-book-form .o_checkbox_label {
+    font-weight: bold;
+    color: #1565c0;
+}
+
+/* Author List Styling */
+.library-author-list {
+    background-color: #f8f9fa;
+}
+
+.library-author-list th, .library-author-list td {
+    padding: 8px;
+}
+
+/* Author Form Styling */
+.library-author-form .author-details {
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.library-author-form .author-books {
+    background-color: #e7f5ff;
+    padding: 10px;
+    border-radius: 6px;
+}
+/* Borrow List Styling */
+.library-borrow-list {
+    background-color: #f8f9fa;
+}
+
+.library-borrow-list th, .library-borrow-list td {
+    padding: 8px;
+}
+
+/* Emphasize the Return button */
+.borrow-return-btn {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Borrow Form Styling */
+.library-borrow-form .borrow-details {
+    background-color: #f1f3f5;
+    padding: 12px;
+    border-radius: 6px;
+}
+/* Genre List Styling */
+.library-genre-list {
+    background-color: #f8f9fa;
+}
+
+.library-genre-list th, .library-genre-list td {
+    padding: 8px;
+}
+
+/* Genre Form Styling */
+.library-genre-form {
+    background-color: #f1f3f5;
+    padding: 12px;
+    border-radius: 6px;
+}
+/* ====== General Layout Enhancements ====== */
+
+.library-book-form, .library-borrow-form {
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ====== Buttons Styling ====== */
+
+.oe_highlight {
+    background-color: #4caf50 !important;
+    color: white !important;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.oe_highlight:hover {
+    background-color: #45a049 !important;
+    color: white;
+}
+
+/* Distinct Button for Quick Borrow */
+button[name="action_quick_borrow"] {
+    background-color: #2196f3 !important;
+    color: white !important;
+    border-radius: 6px;
+}
+
+button[name="action_quick_borrow"]:hover {
+    background-color: #1976d2 !important;
+}
+
+/* ====== List Decorations (Overriding default for clarity) ====== */
+
+tr.o_data_row.o_list_row_decoration_success {
+    background-color: #d4edda !important;
+}
+
+tr.o_data_row.o_list_row_decoration_danger {
+    background-color: #f8d7da !important;
+}
+
+tr.o_data_row.o_list_row_decoration_warning {
+    background-color: #fff3cd !important;
+}
+
+/* ====== Recommendations Styling ====== */
+
+.alert.alert-info {
+    background-color: #e8f4fd;
+    border-left: 4px solid #2196f3;
+    color: #333;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* ====== Menu Visual Polish ====== */
+
+.o_menu_brand {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.o_main_navbar .o_menu_sections .o_menu_header_lvl_1 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ====== Subtle Hover for List Rows ====== */
+
+.o_list_view .o_data_row:hover {
+    background-color: #eef2f7 !important;
+}

@@ -1,0 +1,109 @@
+<odoo>
+
+    <!-- List View -->
+    <record id="view_library_borrow_list" model="ir.ui.view">
+        <field name="name">library.borrow.list</field>
+        <field name="model">library.borrow</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state == 'overdue'"
+                decoration-success="state == 'returned'"
+                decoration-warning="state == 'confirmed'"
+                class="library-borrow-list">
+                
+                <field name="book_id"/>
+                <field name="borrower_id"/>
+                <field name="borrow_date"/>
+                <field name="return_date"/>
+                <field name="state"/>
+                <field name="due_countdown"/>
+                <field name="has_invoice" readonly="1"/>
+
+                <button name="action_mark_returned"
+                        type="object"
+                        string="Mark as Returned"
+                        class="oe_highlight borrow-return-btn"
+                        invisible="state == 'returned'"
+                        confirm="Are you sure you want to mark as returned?"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Form View -->
+    <record id="view_library_borrow_form" model="ir.ui.view">
+        <field name="name">library.borrow.form</field>
+        <field name="model">library.borrow</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet class="library-borrow-form">
+                    <header>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <button name="action_mark_returned"
+                                        type="object"
+                                        string="Mark as Returned"
+                                        class="oe_highlight borrow-return-btn"
+                                        invisible="state == 'returned'"/>
+                            </div>
+                            <div>
+                                <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,returned,overdue"/>
+                            </div>
+                        </div>
+                    </header>
+
+                    <group class="borrow-details">
+                        <group>
+                            <field name="book_id"/>
+                            <field name="borrower_id"/>
+                        </group>
+                        <group>
+                            <field name="borrow_date"/>
+                            <field name="return_date"/>
+                        </group>
+                        <group>
+                            <field name="late_fee_invoice_id" widget="many2one" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Search View -->
+    <record id="view_library_borrow_search" model="ir.ui.view">
+        <field name="name">library.borrow.search</field>
+        <field name="model">library.borrow</field>
+        <field name="arch" type="xml">
+            <search string="Search Borrow Records">
+                <field name="book_id"/>
+                <field name="borrower_id"/>
+                
+                <filter string="Not Returned" name="not_returned" domain="[('state', '!=', 'returned')]"/>
+                <filter string="Overdue" name="overdue" domain="[('state', '=', 'overdue')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_library_borrow" model="ir.actions.act_window">
+        <field name="name">Borrow Records</field>
+        <field name="res_model">library.borrow</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_library_borrow_search"/>
+    </record>
+
+    <!-- Server Action for Bulk Mark as Returned -->
+    <record id="action_mark_returned_multi" model="ir.actions.server">
+        <field name="name">Mark as Returned</field>
+        <field name="model_id" ref="model_library_borrow"/>
+        <field name="binding_model_id" ref="model_library_borrow"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+for record in records:
+    record.action_mark_returned()
+        </field>
+    </record>
+
+</odoo>
