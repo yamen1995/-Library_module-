@@ -157,8 +157,13 @@ class LibraryBorrow(models.Model):
                 "message": message,
                 "type": notif_type,
                 "sticky": False,
+                "next": {
+                    "type": "ir.actions.client",
+                    "tag": "reload",
+                }
             }
         }
+       
     def _create_late_fee_invoice(self, amount):
         if not self.borrower_id:
             return
