@@ -9,7 +9,7 @@
             <field name="genre_id"/>
             <field name="isbn"/>
             <field name="publish_date"/>
-            <field name="is_available"/>
+            <field name="status_display" readonly="1"/>
             <button name="action_view_recommendations"
                     type="object"
                     string="View Recommendations"

@@ -19,7 +19,8 @@
     'license': 'LGPL-3',
     'assets': {
     'web.assets_backend': [
-        'library_management/static/src/css/library_styles.css',
+        'library_management/static/src/css/library_styles.css'
+        ,
     ],
 },
 }

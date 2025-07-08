@@ -1,6 +1,6 @@
 <odoo>
     <!-- Top-Level Library Menu -->
-    <menuitem id="menu_library_root" name="Library" sequence="10"/>
+    <menuitem id="menu_library_root" name="Library" sequence="30"/>
 
     <!-- Books Menu -->
     <menuitem id="menu_library_books" name="Books"
@@ -24,7 +24,5 @@
      <menuitem id="menu_library_genres" name="Genres"
               parent="menu_library_root"
               action="action_library_genre"
-              sequence="50"/>          
-
-
+              sequence="50"/>
 </odoo>

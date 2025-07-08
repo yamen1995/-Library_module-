@@ -12,18 +12,18 @@
 }
 
 /* Highlight overdue records in the list view */
-.o_list_view tr.o_list_row_decoration-danger {
+.o_list_view.library-borrow-list tr.o_list_row_decoration-danger {
     color: #c62828;
     font-weight: bold;
 }
 
 /* Returned - Soft Green */
-.o_list_view tr.o_list_row_decoration-success {
+.o_list_view.library-borrow-list tr.o_list_row_decoration-success {
     background-color: #e8f5e9;
 }
 
 /* Confirmed (Borrowed) - Light Yellow */
-.o_list_view tr.o_list_row_decoration-warning {
+.o_list_view.library-borrow-list tr.o_list_row_decoration-warning {
     background-color: #fffde7;
 }
 
@@ -50,19 +50,22 @@
     border-radius: 4px;
     margin-bottom: 10px;
 }
-/* ===== Bold Book List View Styling ===== */
+
 
 /* Available books: green background */
-.o_list_view tbody tr.o_list_row_decoration-success {
-    background-color: #e8f5e9;
-}
-
-/* Unavailable books: bold red background */
-.o_list_view tbody tr.o_list_row_decoration-danger {
-    background-color: #ffebee;
-    color: #c62828;
+.o_list_view.library-book-list .o_list_table .o_data_row.text-success {
+    color: #0a600e;
     font-weight: bold;
 }
+
+/* Unavailable books: red background */
+.o_list_view.library-book-list .o_list_table .o_data_row.text-danger {
+     color: #8b0000;
+    font-weight: bold;
+}
+
+
+
 /* Book List Styling */
 .library-book-list .btn-recommend {
     background-color: #5c7cfa;
@@ -281,4 +284,27 @@ tr.o_data_row.o_list_row_decoration_warning {
 
 .o_list_view .o_data_row:hover {
     background-color: #eef2f7 !important;
+}
+.badge {
+    padding: 3px 6px;
+    font-size: 80%;
+    border-radius: 4px;
+    color: white;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+}
+.o_list_view td[data-name="status_display"]:contains("Available") {
+    color: green;
+    font-weight: bold;
+}
+
+.o_list_view td[data-name="status_display"]:contains("Unavailable") {
+    color: red;
+    font-weight: bold;
 }

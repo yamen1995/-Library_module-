@@ -11,6 +11,11 @@ class LibraryBook(models.Model):
     description = fields.Text(string='Description')
     publish_date = fields.Date(string='Publish Date')
     is_available = fields.Boolean(string='Available', default=True)
+    status_display = fields.Char(
+        string="Status",
+        compute="_compute_status_display",
+        store=False
+    )
 
     row_class = fields.Char(compute='_compute_row_class', store=False)
     isbn = fields.Char(string='ISBN')
@@ -70,3 +75,10 @@ class LibraryBook(models.Model):
             'target': 'new',
             'context': {'default_book_id': self.id},
         }
+    @api.depends('is_available')
+    def _compute_status_display(self):
+        for record in self:
+            if record.is_available:
+                record.status_display = "✅ Available"
+            else:
+                record.status_display = "❌ Unavailable"

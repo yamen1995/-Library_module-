@@ -17,6 +17,7 @@
                 <field name="state"/>
                 <field name="due_countdown"/>
                 <field name="has_invoice" readonly="1"/>
+                
 
                 <button name="action_mark_returned"
                         type="object"
