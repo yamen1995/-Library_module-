@@ -1,6 +1,0 @@
-id,title,author_id/id,genre_id/id,is_available,isbn,publish_date,description
-book_1,Pride and Prejudice,author_1,genre_1,True,9780141439518,1813-01-28,A classic novel by Jane Austen.
-book_2,Adventures of Huckleberry Finn,author_2,genre_1,True,9780142437179,1884-12-10,Classic American literature by Mark Twain.
-book_3,1984,author_3,genre_3,True,9780451524935,1949-06-08,Dystopian novel by George Orwell.
-book_4,Harry Potter and the Sorcerer's Stone,author_4,genre_4,True,9780439554930,1997-06-26,The first book in the Harry Potter series.
-book_5,Murder on the Orient Express,author_5,genre_2,True,9780062693662,1934-01-01,Detective novel by Agatha Christie.
