@@ -17,6 +17,7 @@
             <button name="action_quick_borrow"
                     type="object"
                     string="Quick Borrow"
+                    invisible="is_available == False"
                     icon="fa-book"
                     class="oe_highlight btn-borrow"/>        
         </list>
