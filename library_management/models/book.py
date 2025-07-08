@@ -65,8 +65,21 @@ class LibraryBook(models.Model):
             'target': 'new',  # Opens in a pop-up
         }
     def action_quick_borrow(self):
-        """ Open Borrow form with current book pre-filled """
+        """Open Borrow form with current book pre-filled, only if available."""
         self.ensure_one()
+
+        if not self.is_available:
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": "Unavailable Book",
+                    "message": f'"{self.title}" is currently not available for borrowing.',
+                    "type": "warning",
+                    "sticky": False,
+                }
+            }
+
         return {
             'type': 'ir.actions.act_window',
             'name': 'New Borrow',
