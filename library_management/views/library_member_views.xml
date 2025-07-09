@@ -13,24 +13,62 @@
     </field>
   </record>
 
-  <record id="view_library_member_form" model="ir.ui.view">
-    <field name="name">library.member.form</field>
-    <field name="model">library.member</field>
-    <field name="arch" type="xml">
-      <form>
-        <sheet>
-          <group>
-            <field name="partner_id" context="{'default_is_company': False}" domain="[('is_company','=',False)]"/>
-            <field name="name"/>
-            <field name="email"/>
-            <field name="phone"/>
-            <field name="member_since"/>
-            <field name="is_active_member"/>
-          </group>
-        </sheet>
-      </form>
-    </field>
-  </record>
+<record id="view_library_member_form" model="ir.ui.view">
+  <field name="name">library.member.form</field>
+  <field name="model">library.member</field>
+  <field name="arch" type="xml">
+    <form>
+      <sheet>
+        <notebook>
+          <page string="Member Details">
+            <group>
+              <field name="partner_id" context="{'default_is_company': False}" domain="[('is_company','=',False)]"/>
+              <field name="name"/>
+              <field name="email"/>
+              <field name="phone"/>
+              <field name="member_since"/>
+              <field name="is_active_member"/>
+            </group>
+          </page>
+
+          <page string="Borrow Records">
+            <field name="borrow_record_ids" context="{'default_member_id': id}">
+              <list editable="bottom">
+                <field name="book_id"/>
+                <field name="borrow_date"/>
+                <field name="return_date"/>
+                <field name="state"/>
+              </list>
+            </field>
+          </page>
+
+          <page string="Borrowed Books">
+            <field name="books_borrowed">
+              <list>
+                <field name="title"/>
+                <field name="author_id"/>
+                <field name="genre_id"/>
+                <field name="publish_date"/>
+              </list>
+            </field>
+          </page>
+
+          <page string="Late Fees">
+            <field name="late_fees">
+              <list>
+                <field name="name"/>
+                <field name="invoice_date"/>
+                <field name="amount_total"/>
+                <field name="payment_state"/>
+              </list>
+            </field>
+          </page>
+
+        </notebook>
+      </sheet>
+    </form>
+  </field>
+</record>
 
   <!-- Action for menu -->
   <record id="action_library_members" model="ir.actions.act_window">
