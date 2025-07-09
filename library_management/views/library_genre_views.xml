@@ -5,6 +5,14 @@
         <field name="arch" type="xml">
             <list class="library-genre-list">
                 <field name="name"/>
+                <field name="book_count" string="Number of Books"/>
+                 <button name="action_view_books"
+                    type="object"
+                    string="View Books"
+                    invisible="book_count == 0"
+                    icon="fa-book"
+                    class="oe_highlight btn-borrow"/>
+
             </list>
         </field>
     </record>
@@ -16,13 +24,56 @@
         <field name="arch" type="xml">
             <form>
                 <sheet class="library-genre-form">
+                <notebook>
+                    <page string="Genre Details" class="genre-details-tab">
                     <group>
                         <field name="name"/>
                     </group>
+                    </page>
+                        <page string="Books in this Genre" class="books-in-genre-tab">
+                            <field name="book_ids">
+                                <list>
+                                    <field name="title"/>
+                                    <field name="author_id"/>
+                                    <field name="isbn"/>
+                                    <field name="is_available"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
+
+    <record id="view_library_genre_form_tree" model="ir.ui.view">
+        <field name="name">library.genre.form.tree</field>
+        <field name="model">library.genre</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet class="library-genre-form">
+                <notebook>
+                    <page string="Genre Details" class="genre-details-tab">
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    </page>
+                        <page string="Books in this Genre" class="books-in-genre-tab">
+                            <field name="book_ids">
+                                <list>
+                                    <field name="title"/>
+                                    <field name="author_id"/>
+                                    <field name="isbn"/>
+                                    <field name="is_available"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
 
 
     <record id="action_library_genre" model="ir.actions.act_window">
