@@ -175,6 +175,7 @@ class LibraryBorrow(models.Model):
 
         invoice_vals = {
             'move_type': 'out_invoice',
+            'state': 'draft',
             'partner_id': self.borrower_id.id,
             'invoice_date': fields.Date.today(),
             'invoice_line_ids': [(0, 0, {
