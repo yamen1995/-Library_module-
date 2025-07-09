@@ -30,7 +30,7 @@ class LibraryBorrow(models.Model):
             ('overdue', 'Overdue'),
             ('returned', 'Returned')
         ],
-        string="Status", compute="_compute_state", store=True
+        string="Status", default='draft', store=True
     )
 
     due_countdown = fields.Char(
@@ -48,8 +48,8 @@ class LibraryBorrow(models.Model):
             return_date_obj = borrow_date_obj + timedelta(days=7)
             self.return_date = fields.Date.to_string(return_date_obj)
 
-    @api.depends('borrow_date', 'return_date', 'is_returned')
-    def _compute_state(self):
+    
+    def _compute_and_set_state(self):
         """
         Compute the current state of the borrowing record:
         - 'returned' if the book is returned
@@ -57,16 +57,19 @@ class LibraryBorrow(models.Model):
         - 'confirmed' if the book is borrowed and not overdue
         - 'draft' otherwise
         """
+        new_state = 'draft'
         today = fields.Date.today()
         for record in self:
             if record.is_returned:
-                record.state = 'returned'
+                new_state = 'returned'
             elif record.return_date and record.return_date < today:
-                record.state = 'overdue'
+                new_state = 'overdue'
             elif record.book_id:
-                record.state = 'confirmed'
+                new_state = 'confirmed'
             else:
-                record.state = 'draft'
+                new_state = 'draft'
+            if record.state != new_state:
+                record.state = new_state
 
     @api.depends('return_date', 'is_returned')
     def _compute_due_countdown(self):
@@ -96,6 +99,7 @@ class LibraryBorrow(models.Model):
         records = super(LibraryBorrow, self).create(vals_list)
         for record in records:
             record._process_borrow()
+            record._compute_and_set_state()
         return records
 
     def write(self, vals):
@@ -103,6 +107,7 @@ class LibraryBorrow(models.Model):
         Override write to process book availability when the book is changed.
         """
         res = super().write(vals)
+        self._compute_and_set_state()
         if 'book_id' in vals:
             self._process_borrow()
         return res
