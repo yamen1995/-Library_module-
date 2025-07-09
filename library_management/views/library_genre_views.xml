@@ -25,12 +25,12 @@
             <form>
                 <sheet class="library-genre-form">
                 <notebook>
-                    <page string="Genre Details" class="genre-details-tab">
+                    <page string="Genre Details" >
                     <group>
                         <field name="name"/>
                     </group>
                     </page>
-                        <page string="Books in this Genre" class="books-in-genre-tab">
+                        <page string="Books in this Genre" >
                             <field name="book_ids">
                                 <list>
                                     <field name="title"/>
@@ -53,12 +53,12 @@
             <form>
                 <sheet class="library-genre-form">
                 <notebook>
-                    <page string="Genre Details" class="genre-details-tab">
+                    <page string="Genre Details" >
                     <group>
                         <field name="name"/>
                     </group>
                     </page>
-                        <page string="Books in this Genre" class="books-in-genre-tab">
+                        <page string="Books in this Genre">
                             <field name="book_ids">
                                 <list>
                                     <field name="title"/>

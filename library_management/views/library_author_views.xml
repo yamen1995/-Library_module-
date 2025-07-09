@@ -6,6 +6,13 @@
         <field name="arch" type="xml">
             <list decoration-info="name != False" class="library-author-list">
                 <field name="name"/>
+                <field name="book_count" string="Number of Books"/>
+                <button name="action_view_books"
+                        type="object"
+                        string="View Books"
+                        class="oe_highlight"
+                        icon="fa-book"
+                        invisible="book_count == 0"/>
             </list>
         </field>
     </record>
@@ -15,18 +22,58 @@
         <field name="arch" type="xml">
             <form>
                 <sheet class="library-author-form">
-                    <group class="author-details">
+                <notebook>
+                <page string="Author Details">
+                    <group  class="author-details">
                         <field name="name"/>
                     </group>
-                    
-                    <group string="Books by this Author" class="author-books">
-                        <field name="book_ids" widget="many2many_tags" readonly="1"/>
+                </page>
+                <page string="Books by this Author" >
+                    <group>
+                        <field name="book_ids">
+                            <list>
+                                <field name="title"/>
+                                <field name="author_id"/>
+                                <field name="isbn"/>
+                                <field name="is_available"/>
+                            </list>
+                        </field>
                     </group>
+                </page>
+                </notebook>
                 </sheet>
             </form>
         </field>
     </record>
-
+    <record id="view_library_author_form_tree" model="ir.ui.view">
+        <field name="name">library.author.form.tree</field>
+        <field name="model">library.author</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet class="library-author-form">
+                    <notebook>
+                    <page string="Author Details">
+                        <group  class="author-details">
+                            <field name="name"/>
+                        </group>
+                    </page>
+                    <page string="Books by this Author">
+                        <group>
+                            <field name="book_ids">
+                                <list>
+                                    <field name="title"/>
+                                    <field name="author_id"/>
+                                    <field name="isbn"/>
+                                    <field name="is_available"/>
+                                </list>
+                            </field>
+                        </group>
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
     <record id="action_library_author" model="ir.actions.act_window">
         <field name="name">Authors</field>
         <field name="res_model">library.author</field>
