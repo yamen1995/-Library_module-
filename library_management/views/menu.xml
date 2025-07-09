@@ -25,4 +25,10 @@
               parent="menu_library_root"
               action="action_library_genre"
               sequence="50"/>
+    <!-- Members Menu -->
+    <menuitem id="menu_library_members"
+                name="Members"
+                parent="menu_library_root"
+                action="action_library_members"
+                sequence="60"/>
 </odoo>

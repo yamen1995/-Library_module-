@@ -12,6 +12,7 @@
         'views/library_author_views.xml',
         'views/library_borrow_views.xml',
         'views/library_genre_views.xml',
+        'views/library_member_views.xml',
         'views/menu.xml',
         ],
     'application': True,

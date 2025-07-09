@@ -13,7 +13,7 @@ class LibraryBorrow(models.Model):
         domain=[('is_available', '=', True)]
     )
     borrower_id = fields.Many2one(
-        'res.partner', string='Borrower', required=True
+        'library.member', string='Borrower', required=True
     )
     borrow_date = fields.Date(
         string='Borrow Date', default=fields.Date.today
