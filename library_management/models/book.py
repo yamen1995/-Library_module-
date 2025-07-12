@@ -2,6 +2,12 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 class LibraryBook(models.Model):
+    ''' Library Book Model
+    Represents books in the library management system.
+    Each book can have an author, genre, and multiple recommendations.
+    The model includes fields for title, description, publish date,
+    availability status, and ISBN. It also includes methods for
+    recommending books, checking ISBN validity, and quick borrowing.'''
     _name = 'library.book'
     _description = 'Library Book'
     _rec_name = 'title'
@@ -17,7 +23,6 @@ class LibraryBook(models.Model):
         store=False
     )
 
-    row_class = fields.Char(compute='_compute_row_class', store=False)
     isbn = fields.Char(string='ISBN')
     genre_id = fields.Many2one('library.genre', string='Genre')
     
@@ -50,9 +55,7 @@ class LibraryBook(models.Model):
                 if len(record.isbn) not in (10, 13):
                     raise ValidationError("ISBN must be either 10 or 13 digits long.")
 
-    def _compute_row_class(self):
-        for record in self:
-            record.row_class = 'available-book' if record.is_available else 'unavailable-book'
+
     def action_view_recommendations(self):
         self.ensure_one()
         return {

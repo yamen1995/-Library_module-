@@ -1,5 +1,11 @@
 <odoo>
-
+<!-- This file defines the views for library book management in the library management system.
+  It includes list and form views for managing books, search functionality,
+  and actions for marking books as returned.
+  The views are designed to be user-friendly and provide easy access to book details.
+  The list view displays books with their titles, authors, and availability status.
+  The form view allows for detailed editing of book information, including genres and descriptions.
+ -->
     <!-- List View -->
     <record id="view_library_borrow_list" model="ir.ui.view">
         <field name="name">library.borrow.list</field>

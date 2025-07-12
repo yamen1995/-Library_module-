@@ -3,7 +3,11 @@ from odoo.exceptions import UserError
 from datetime import timedelta, date
 
 class LibraryBorrow(models.Model):
-    """Model representing a book borrowing record in the library."""
+    """Model representing a book borrowing record in the library.
+    This model tracks which book is borrowed by which member, the dates of borrowing
+    and returning, and whether the book has been returned. It also handles the
+    computation of late fees and the state of the borrowing record.
+    """
     _name = 'library.borrow'
     _description = 'Borrowing Record'
 

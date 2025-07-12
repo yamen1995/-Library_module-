@@ -8,6 +8,14 @@ import { Component, onMounted, onPatched, onWillUnmount, useState, xml } from "@
 
 // Tooltip Component
 class DescriptionTooltip extends Component {
+    /** Tooltip for book descriptions
+     * Displays a tooltip with the book's description when hovering over the book item.
+     * The tooltip is positioned near the mouse cursor.
+     * * This component is designed to be used within the LibraryBookListRenderer.
+     * * It uses the `useState` hook to manage its visibility and position.
+     * * The API provides methods to show the tooltip at a specific position and hide it.
+     * * The tooltip is styled to be fixed in position and has a maximum width.
+     */
     static template = xml`
         <div class="book-tooltip p-2 bg-light border shadow-sm"
              t-att-style="state.style">
@@ -55,6 +63,18 @@ class DescriptionTooltip extends Component {
 
 // Custom Renderer
 class LibraryBookListRenderer extends ListRenderer {
+    /** Custom List Renderer for Library Book List
+     * This renderer extends the default ListRenderer to add a tooltip feature
+     * that displays the book's description when hovering over a book item.
+     * It sets up event listeners for mouseover and mouseout events to show and hide
+     * the tooltip.
+     * * The tooltip is positioned dynamically based on the mouse cursor position
+     *   and the dimensions of the book item.
+     * * The tooltip is styled to be fixed in position and has a maximum width.
+     * * The API provides methods to show the tooltip at a specific position and hide it.
+     * * The renderer uses the `DescriptionTooltip` component to manage the tooltip's
+     *   visibility and content.
+     */
     static template = xml`
         <div>
             <t t-call="web.ListRenderer"/>

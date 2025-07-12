@@ -1,6 +1,12 @@
 from odoo import models, fields
 
 class LibraryGenre(models.Model):
+    '''Book Genre Model
+    Represents a genre of books in the library.
+    Each genre can have multiple books associated with it.
+    The model includes a computed field to count the number of books
+    associated with the genre and an action to view those books.
+    '''
     _name = 'library.genre'
     _description = 'Book Genre'
 

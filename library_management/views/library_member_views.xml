@@ -1,4 +1,10 @@
 <odoo>
+  <!-- This file defines the views for library member management in the library management system.
+    It includes list and form views for managing members and their associated borrow records.
+    The views are designed to be user-friendly and provide easy access to member details.
+    The list view displays members with their names, contact information, and membership status.
+    The form view allows for detailed editing of member information and their borrow records.
+  -->
   <record id="view_library_member_list" model="ir.ui.view">
     <field name="name">library.member.tree</field>
     <field name="model">library.member</field>

@@ -1,6 +1,12 @@
 from odoo import models, fields
 
 class LibraryAuthor(models.Model):
+    ''' Library Author Model
+    Represents authors in the library management system.
+    Each author can have multiple books associated with them.
+    The model includes a computed field to count the number of books
+    associated with the author and an action to view those books.
+    '''
     _name = 'library.author'
     _description = 'Library Author'
 

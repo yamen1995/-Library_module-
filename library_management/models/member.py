@@ -1,6 +1,12 @@
 from odoo import models, fields, api
 
 class LibraryMember(models.Model):
+    ''' Library Member Model
+    inherits from res.partner and
+    Represents members of the library who can borrow books.
+    Each member is linked to a partner record and can have multiple borrow records.
+    The model includes fields for member since date, active status, and computed fields
+    '''
     _name = 'library.member'
     _description = 'Library Member'
     _inherits = {'res.partner': 'partner_id'}

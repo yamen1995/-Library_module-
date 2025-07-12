@@ -1,4 +1,12 @@
 <odoo>
+<!-- This file defines the views for library borrow records in the library management system.
+  It includes list and form views for managing borrow records, search functionality,
+  and actions for marking books as returned.
+  The views are designed to be user-friendly and provide easy access to borrow details.
+  The list view displays borrow records with book titles, borrower names, and status.
+  The form view allows for detailed editing of borrow records, including dates and late fees.
+    The search view enables filtering by book, borrower, and status.
+    -->
  <record model="ir.ui.view" id="view_library_book_list">
     <field name="name">library.book.list</field>
     <field name="model">library.book</field>

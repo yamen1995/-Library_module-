@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+<!-- This file defines the views for library authors in the library management system.
+  It includes list and form views for managing authors and their books.
+    The views are designed to be user-friendly and provide easy access to author details
+    and their associated books.
+    The list view displays authors with their names and the number of books they have written.
+    The form view allows for detailed editing of author information and their books.
+    The views also include actions to view books associated with each author.
+ -->
     <record id="view_library_author_list" model="ir.ui.view">
         <field name="name">library.author.list</field>
         <field name="model">library.author</field>
