@@ -308,3 +308,15 @@ tr.o_data_row.o_list_row_decoration_warning {
     color: red;
     font-weight: bold;
 }
+.book-tooltip {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    max-width: 300px;
+    pointer-events: none;
+    z-index: 9999;
+    white-space: pre-line;             
+    transition: opacity 0.2s ease-in;  
+}

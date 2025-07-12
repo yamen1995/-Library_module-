@@ -3,13 +3,15 @@
     <field name="name">library.book.list</field>
     <field name="model">library.book</field>
     <field name="arch" type="xml">
-        <list decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+        <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
             <field name="title"/>
             <field name="author_id"/>
             <field name="genre_id"/>
             <field name="isbn"/>
             <field name="publish_date"/>
             <field name="status_display" readonly="1"/>
+            <field name="description"  column_invisible="1" />
+
             <button name="action_view_recommendations"
                     type="object"
                     string="View Recommendations"
