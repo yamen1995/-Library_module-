@@ -44,7 +44,7 @@ class DescriptionTooltip extends Component {
         max-width: 300px;
     `;
 
-    // Add the 'visible' class
+ 
 
     }
 
@@ -106,20 +106,41 @@ class LibraryBookListRenderer extends ListRenderer {
     }
 
     handleMouseOver(event) {
-        if (!this.tooltipAPI) return;
-        
-        const row = event.target.closest('tr[data-id]');
-        if (!row) return;
+    if (!this.tooltipAPI) return;
 
-        const id = row.getAttribute('data-id');
-        const record = this.props.list.records.find(r => r.id.toString() === id);
-        const description = record?.data?.description;
-        if (!description) return;
+    const row = event.target.closest('tr[data-id]');
+    if (!row) return;
 
-        const rect = row.getBoundingClientRect();
-        const scrollY = window.scrollY || window.pageYOffset;
-        this.tooltipAPI.showAt(rect.left, rect.bottom + scrollY + 5, description);
+    const id = row.getAttribute('data-id');
+    const record = this.props.list.records.find(r => r.id.toString() === id);
+    const description = record?.data?.description;
+    if (!description) return;
+
+    const rect = row.getBoundingClientRect();
+    const scrollY = window.scrollY || window.pageYOffset;
+    const scrollX = window.scrollX || window.pageXOffset;
+
+    const tooltipWidth = 300;
+    const tooltipHeight = 80;
+
+    let left = rect.left + scrollX;
+    let top = rect.bottom + scrollY + 5;
+
+    if (left + tooltipWidth > window.innerWidth + scrollX) {
+        left = window.innerWidth + scrollX - tooltipWidth - 10;
     }
+
+
+    if (top + tooltipHeight > window.innerHeight + scrollY) {
+        top = rect.top + scrollY - tooltipHeight - 5;
+    }
+
+ 
+    left = Math.max(left, scrollX + 10);
+    top = Math.max(top, scrollY + 10);
+
+    this.tooltipAPI.showAt(left, top, description);
+}
 
     handleMouseOut(event) {
         if (!this.tooltipAPI) return;

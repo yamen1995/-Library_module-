@@ -22,7 +22,6 @@
     'web.assets_backend': [
         'library_management/static/src/css/library_styles.css',
         'library_management/static/src/js/library_book_list_renderer.js',
-        'library_management/static/src/xml/library_book_templates.xml',
         
     ],
 },
