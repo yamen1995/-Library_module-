@@ -1,322 +1,122 @@
+/* Global Styles */
 .o_form_view .o_field_widget[name="state"] {
-    color: darkgreen;
-    font-weight: bold;
+    @apply text-emerald-700 font-bold;
 }
 
 .o_form_view .o_group .o_field_widget[name="borrow_date"],
 .o_form_view .o_group .o_field_widget[name="book_id"],
 .o_form_view .o_group .o_field_widget[name="borrower_id"],
 .o_form_view .o_group .o_field_widget[name="return_date"] {
-    background-color: #f0f8ff;
-    border: 1px solid #dcdcdc;
+    @apply bg-blue-50 border border-gray-300 rounded-md p-2;
 }
 
-/* Highlight overdue records in the list view */
+/* List View States */
 .o_list_view.library-borrow-list tr.o_list_row_decoration-danger {
-    color: #c62828;
-    font-weight: bold;
+    @apply text-red-800 font-bold;
 }
 
-/* Returned - Soft Green */
 .o_list_view.library-borrow-list tr.o_list_row_decoration-success {
-    background-color: #e8f5e9;
+    @apply bg-green-50;
 }
 
-/* Confirmed (Borrowed) - Light Yellow */
 .o_list_view.library-borrow-list tr.o_list_row_decoration-warning {
-    background-color: #fffde7;
+    @apply bg-yellow-50;
 }
 
-/* Borrow form header button styling */
+/* Buttons & Form Elements */
 .library-borrow-form .oe_highlight {
-    background-color: #28a745 !important;
-    border-color: #28a745 !important;
-    color: white !important;
-    padding: 4px 10px;
-    border-radius: 4px;
+    @apply bg-emerald-600 hover:bg-emerald-700 border-0 text-white py-2 px-4 rounded-lg font-medium shadow-md transition-all duration-200;
 }
 
-/* Statusbar spacing and emphasis */
-.library-borrow-form .o_statusbar {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/* Group styling in form view */
-.library-borrow-form .o_group {
-    background: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-
-/* Available books: green background */
-.o_list_view.library-book-list .o_list_table .o_data_row.text-success {
-    color: #0a600e;
-    font-weight: bold;
-}
-
-/* Unavailable books: red background */
-.o_list_view.library-book-list .o_list_table .o_data_row.text-danger {
-     color: #8b0000;
-    font-weight: bold;
-}
-
-
-
-/* Book List Styling */
 .library-book-list .btn-recommend {
-    background-color: #5c7cfa;
-    color: white;
-    border-radius: 4px;
-    margin: 0 2px;
+    @apply bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded-md mx-1 shadow transition-colors;
 }
 
 .library-book-list .btn-borrow {
-    background-color: #40c057;
-    color: white;
-    border-radius: 4px;
-    margin: 0 2px;
+    @apply bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded-md mx-1 shadow transition-colors;
 }
 
-/* Hover Effects for buttons */
-.library-book-list .btn-recommend:hover {
-    background-color: #364fc7;
+.borrow-return-btn {
+    @apply bg-amber-500 hover:bg-amber-600 text-gray-900 py-1 px-3 rounded-md shadow transition-colors;
 }
 
-.library-book-list .btn-borrow:hover {
-    background-color: #2b8a3e;
+button[name="action_quick_borrow"] {
+    @apply bg-sky-600 hover:bg-sky-700 text-white py-2 px-4 rounded-lg font-medium shadow-md transition-colors;
 }
 
-/* Book Form Layout */
-.library-book-form .group-primary {
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+/* Form Layouts */
+.library-book-form .group-primary,
+.library-member-form .group-primary,
+.library-genre-form .group-primary {
+    @apply bg-gray-50 p-4 rounded-xl shadow-sm mb-4;
 }
 
-.library-book-form .group-secondary {
-    background-color: #fff3cd;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
+.library-book-form .group-secondary,
+.library-member-form .group-secondary,
+.library-genre-form .group-secondary {
+    @apply bg-amber-50 p-4 rounded-xl mb-4;
 }
 
-.library-book-form .group-tertiary {
-    background-color: #e7f5ff;
-    padding: 10px;
-    border-radius: 6px;
+.library-book-form .group-tertiary,
+.library-member-form .group-tertiary,
+.library-genre-form .group-tertiary {
+    @apply bg-blue-50 p-4 rounded-xl;
 }
 
-/* Recommendation Notebook Styling */
-.recommendations-tab .recommendation-note {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-/* Recommendations Popup Styling */
-.library-recommendations-popup {
-    padding: 15px;
-    background-color: #f1f3f5;
-    border-radius: 6px;
-}
-
-/* ===== Bold Book Form Styling ===== */
-.library-book-form .o_group {
-    background: #e3f2fd;
-    padding: 15px;
-    border: 2px solid #2196f3;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+.library-book-form, 
+.library-borrow-form {
+    @apply bg-gray-50 rounded-xl p-4 shadow-sm;
 }
 
 .library-book-form textarea {
-    min-height: 120px;
-    background: #fff3e0;
-    border: 2px solid #ff9800;
-    border-radius: 4px;
+    @apply min-h-[120px] bg-amber-50 border-2 border-amber-300 rounded-lg p-2;
 }
 
-.library-book-form .o_checkbox_label {
-    font-weight: bold;
-    color: #1565c0;
+/* Status & Indicators */
+.o_list_view.library-book-list .o_list_table .o_data_row.text-success {
+    @apply text-green-800 font-bold;
 }
 
-/* Author List Styling */
-.library-author-list {
-    background-color: #f8f9fa;
+.o_list_view.library-book-list .o_list_table .o_data_row.text-danger {
+    @apply text-red-800 font-bold;
 }
 
-.library-author-list th, .library-author-list td {
-    padding: 8px;
+.o_statusbar {
+    @apply font-bold text-gray-700;
 }
 
-/* Author Form Styling */
-.library-author-form .author-details {
-    background-color: #fff3cd;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-.library-author-form .author-books {
-    background-color: #e7f5ff;
-    padding: 10px;
-    border-radius: 6px;
-}
-/* Borrow List Styling */
-.library-borrow-list {
-    background-color: #f8f9fa;
-}
-
-.library-borrow-list th, .library-borrow-list td {
-    padding: 8px;
-}
-
-/* Emphasize the Return button */
-.borrow-return-btn {
-    background-color: #ffc107;
-    color: black;
-    border: none;
-    border-radius: 4px;
-}
-
-/* Borrow Form Styling */
-.library-borrow-form .borrow-details {
-    background-color: #f1f3f5;
-    padding: 12px;
-    border-radius: 6px;
-}
-/* Genre List Styling */
-.library-genre-list {
-    background-color: #f8f9fa;
-}
-
-.library-genre-list th, .library-genre-list td {
-    padding: 8px;
-}
-
-/* Genre Form Styling */
-.library-genre-form {
-    background-color: #f1f3f5;
-    padding: 12px;
-    border-radius: 6px;
-}
-/* ====== General Layout Enhancements ====== */
-
-.library-book-form, .library-borrow-form {
-    background: #f9fafb;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* ====== Buttons Styling ====== */
-
-.oe_highlight {
-    background-color: #4caf50 !important;
-    color: white !important;
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.oe_highlight:hover {
-    background-color: #45a049 !important;
-    color: white;
-}
-
-/* Distinct Button for Quick Borrow */
-button[name="action_quick_borrow"] {
-    background-color: #2196f3 !important;
-    color: white !important;
-    border-radius: 6px;
-}
-
-button[name="action_quick_borrow"]:hover {
-    background-color: #1976d2 !important;
-}
-
-/* ====== List Decorations (Overriding default for clarity) ====== */
-
-tr.o_data_row.o_list_row_decoration_success {
-    background-color: #d4edda !important;
-}
-
-tr.o_data_row.o_list_row_decoration_danger {
-    background-color: #f8d7da !important;
-}
-
-tr.o_data_row.o_list_row_decoration_warning {
-    background-color: #fff3cd !important;
-}
-
-/* ====== Recommendations Styling ====== */
-
-.alert.alert-info {
-    background-color: #e8f4fd;
-    border-left: 4px solid #2196f3;
-    color: #333;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 4px;
-}
-
-/* ====== Menu Visual Polish ====== */
-
-.o_menu_brand {
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.o_main_navbar .o_menu_sections .o_menu_header_lvl_1 {
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* ====== Subtle Hover for List Rows ====== */
-
-.o_list_view .o_data_row:hover {
-    background-color: #eef2f7 !important;
-}
 .badge {
-    padding: 3px 6px;
-    font-size: 80%;
-    border-radius: 4px;
-    color: white;
+    @apply px-2 py-1 text-xs rounded-md text-white;
 }
 
 .badge-success {
-    background-color: #28a745;
+    @apply bg-green-500;
 }
 
 .badge-danger {
-    background-color: #dc3545;
-}
-.o_list_view td[data-name="status_display"]:contains("Available") {
-    color: green;
-    font-weight: bold;
+    @apply bg-red-500;
 }
 
-.o_list_view td[data-name="status_display"]:contains("Unavailable") {
-    color: red;
-    font-weight: bold;
+/* Table Enhancements */
+.library-book-list,
+.library-author-list,
+.library-borrow-list,
+.library-genre-list {
+    @apply bg-white rounded-lg overflow-hidden;
 }
+
+.o_list_view th, 
+.o_list_view td {
+    @apply px-4 py-3;
+}
+
+.o_list_view .o_data_row:hover {
+    @apply bg-gray-50;
+}
+
+/* Tooltip */
 .book-tooltip {
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    padding: 0.5rem;
-    max-width: 300px;
-    pointer-events: none;
-    z-index: 9999;
-    white-space: pre-line;             
-    transition: opacity 0.2s ease-in;  
+    @apply bg-white border border-gray-200 rounded-lg shadow-lg p-3 max-w-xs pointer-events-none transition-opacity;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }

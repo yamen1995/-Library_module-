@@ -4,11 +4,11 @@
     <field name="model">library.member</field>
     <field name="arch" type="xml">
       <list>
-        <field name="name"/>
-        <field name="email"/>
-        <field name="phone"/>
-        <field name="member_since"/>
-        <field name="is_active_member"/>
+        <field name="name" width="200"/>
+        <field name="email" width="200"/>
+        <field name="phone" width="200"/>
+        <field name="member_since" width="200"/>
+        <field name="is_active_member" width="50"/>
       </list>
     </field>
   </record>
@@ -21,11 +21,15 @@
       <sheet>
         <notebook>
           <page string="Member Details">
-            <group>
+            <group class="group-primary">
               <field name="partner_id" context="{'default_is_company': False}" domain="[('is_company','=',False)]"/>
               <field name="name"/>
+              </group>
+              <group class="group-secondary">
               <field name="email"/>
               <field name="phone"/>
+              </group>
+              <group class="group-tertiary">
               <field name="member_since"/>
               <field name="is_active_member"/>
             </group>
@@ -34,32 +38,34 @@
           <page string="Borrow Records">
             <field name="borrow_record_ids" context="{'default_member_id': id}">
               <list editable="bottom">
-                <field name="book_id"/>
-                <field name="borrow_date"/>
-                <field name="return_date"/>
-                <field name="state"/>
+                <field name="book_id" width="200"/>
+                <field name="borrow_date" width="175"/>
+                <field name="return_date" width="175"/>
+                <field name="state" width="175"/>
               </list>
             </field>
           </page>
 
           <page string="Borrowed Books">
             <field name="books_borrowed">
-              <list>
-                <field name="title"/>
-                <field name="author_id"/>
-                <field name="genre_id"/>
-                <field name="publish_date"/>
-              </list>
+                                <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                                    <field name="title" width="200"/>
+                                    <field name="author_id" width="175"/>
+                                    <field name="isbn" width="175"/>
+                                    <field name="publish_date" width="175"/>
+                                    <field name="description" column_invisible="1" width="175"/>
+                                    <field name="status_display" readonly="1" width="175"/>
+                                </list>
             </field>
           </page>
 
           <page string="Late Fees">
             <field name="late_fees">
               <list>
-                <field name="name"/>
-                <field name="invoice_date"/>
-                <field name="amount_total"/>
-                <field name="payment_state"/>
+                <field name="name" width="200"/>
+                <field name="invoice_date" width="175"/>
+                <field name="amount_total" width="175"/>
+                <field name="payment_state" width="175"/>
               </list>
             </field>
           </page>

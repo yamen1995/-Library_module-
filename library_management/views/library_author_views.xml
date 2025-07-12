@@ -5,14 +5,14 @@
         <field name="model">library.author</field>
         <field name="arch" type="xml">
             <list decoration-info="name != False" class="library-author-list">
-                <field name="name"/>
-                <field name="book_count" string="Number of Books"/>
+                <field name="name" width="200"/>
+                <field name="book_count" string="Number of Books" width="175"/>
                 <button name="action_view_books"
                         type="object"
                         string="View Books"
                         class="oe_highlight"
                         icon="fa-book"
-                        invisible="book_count == 0"/>
+                        invisible="book_count == 0" width="175"/>
             </list>
         </field>
     </record>
@@ -31,11 +31,11 @@
                 <page string="Books by this Author" >
                     <group>
                         <field name="book_ids">
-                            <list>
-                                <field name="title"/>
-                                <field name="author_id"/>
-                                <field name="isbn"/>
-                                <field name="is_available"/>
+                            <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                                <field name="title" width="200"/>
+                                <field name="author_id" width="175"/>
+                                <field name="isbn" width="175"/>
+                                <field name="is_available" width="175"/>
                             </list>
                         </field>
                     </group>
@@ -60,11 +60,11 @@
                     <page string="Books by this Author">
                         <group>
                             <field name="book_ids">
-                                <list>
-                                    <field name="title"/>
-                                    <field name="author_id"/>
-                                    <field name="isbn"/>
-                                    <field name="is_available"/>
+                                <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                                    <field name="title" width="200"/>
+                                    <field name="author_id" width="175"/>
+                                    <field name="isbn" width="175"/>
+                                    <field name="is_available" width="175"/>
                                 </list>
                             </field>
                         </group>

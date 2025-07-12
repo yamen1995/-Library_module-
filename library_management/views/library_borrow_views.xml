@@ -9,14 +9,14 @@
                 decoration-success="state == 'returned'"
                 decoration-warning="state == 'confirmed'"
                 class="library-borrow-list">
-                
-                <field name="book_id"/>
-                <field name="borrower_id"/>
-                <field name="borrow_date"/>
-                <field name="return_date"/>
-                <field name="state"/>
-                <field name="due_countdown"/>
-                <field name="has_invoice" readonly="1"/>
+
+                <field name="book_id" width="200"/>
+                <field name="borrower_id" width="175"/>
+                <field name="borrow_date" width="175"/>
+                <field name="return_date" width="175"/>
+                <field name="state" width="175"/>
+                <field name="due_countdown" width="175"/>
+                <field name="has_invoice" readonly="1" width="175"/>
 
 
                 <button name="action_mark_returned"

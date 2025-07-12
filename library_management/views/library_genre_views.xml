@@ -4,14 +4,14 @@
         <field name="model">library.genre</field>
         <field name="arch" type="xml">
             <list class="library-genre-list">
-                <field name="name"/>
-                <field name="book_count" string="Number of Books"/>
+                <field name="name" width="200"/>
+                <field name="book_count" string="Number of Books" width="175"/>
                  <button name="action_view_books"
                     type="object"
                     string="View Books"
                     invisible="book_count == 0"
                     icon="fa-book"
-                    class="oe_highlight btn-borrow"/>
+                    class="oe_highlight btn-borrow" width="175"/>
 
             </list>
         </field>
@@ -26,17 +26,20 @@
                 <sheet class="library-genre-form">
                 <notebook>
                     <page string="Genre Details" >
-                    <group>
+                    <group class="group-primary">
                         <field name="name"/>
                     </group>
                     </page>
                         <page string="Books in this Genre" >
-                            <field name="book_ids">
-                                <list>
-                                    <field name="title"/>
-                                    <field name="author_id"/>
-                                    <field name="isbn"/>
-                                    <field name="is_available"/>
+                            <field name="book_ids"/>
+                            <field name="book_ids" context="{'default_genre_id': id}">
+                                <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                                    <field name="title" width="200"/>
+                                    <field name="author_id" width="175"/>
+                                    <field name="isbn" width="175"/>
+                                    <field name="publish_date" width="175"/>
+                                    <field name="description" column_invisible="1" width="175"/>
+                                    <field name="status_display" readonly="1" width="175"/>
                                 </list>
                             </field>
                         </page>
@@ -60,11 +63,13 @@
                     </page>
                         <page string="Books in this Genre">
                             <field name="book_ids">
-                                <list>
-                                    <field name="title"/>
-                                    <field name="author_id"/>
-                                    <field name="isbn"/>
-                                    <field name="is_available"/>
+                                <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                                    <field name="title" width="200"/>
+                                    <field name="author_id" width="175"/>
+                                    <field name="isbn" width="175"/>
+                                    <field name="publish_date" width="175"/>
+                                    <field name="description" column_invisible="1" width="175"/>
+                                    <field name="status_display" readonly="1" width="175"/>
                                 </list>
                             </field>
                         </page>
@@ -73,6 +78,7 @@
             </form>
         </field>
     </record>
+    
 
 
 
