@@ -15,17 +15,17 @@ class LibraryBorrow(models.Model):
     book_id = fields.Many2one(
         'library.book', string='Book', required=True,
         domain=[('is_available', '=', True)]
-    )
+    ) # The book being borrowed, must be available
     borrower_id = fields.Many2one(
         'library.member', string='Borrower', required=True
-    )
+    ) # The member borrowing the book
     borrow_date = fields.Date(
         string='Borrow Date', default=fields.Date.today
-    )
-    return_date = fields.Date(string='Return Date')
-    is_returned = fields.Boolean(string='Returned', default=False)
-    late_fee_invoice_id = fields.Many2one('account.move', string="Late Fee Invoice", readonly=True, copy=False)
-    has_invoice = fields.Boolean(compute='_compute_has_invoice', string="Invoice")
+    ) # The date when the book was borrowed
+    return_date = fields.Date(string='Return Date') # The date when the book is expected to be returned
+    is_returned = fields.Boolean(string='Returned', default=False) # Indicates if the book has been returned
+    late_fee_invoice_id = fields.Many2one('account.move', string="Late Fee Invoice", readonly=True, copy=False) # The invoice for late fees, if any
+    has_invoice = fields.Boolean(compute='_compute_has_invoice', string="Invoice") # Indicates if there is a late fee invoice associated with this record
 
     state = fields.Selection(
         [
@@ -35,11 +35,11 @@ class LibraryBorrow(models.Model):
             ('returned', 'Returned')
         ],
         string="Status", default='draft', store=True
-    )
+    ) # The current state of the borrowing record
 
     due_countdown = fields.Char(
         string="Due In", compute="_compute_due_countdown"
-    )
+    ) # Countdown until the return date or overdue days
 
     @api.onchange('borrow_date')
     def _onchange_borrow_date(self):
@@ -174,6 +174,9 @@ class LibraryBorrow(models.Model):
         }
        
     def _create_late_fee_invoice(self, amount):
+        """
+        Create a late fee invoice for the borrower.
+        """
         if not self.borrower_id:
             return
 
@@ -193,5 +196,6 @@ class LibraryBorrow(models.Model):
 
     @api.depends('late_fee_invoice_id')
     def _compute_has_invoice(self):
+        """Compute whether the record has an associated late fee invoice."""
         for record in self:
             record.has_invoice = bool(record.late_fee_invoice_id)

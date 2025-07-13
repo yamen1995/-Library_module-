@@ -8,6 +8,7 @@
     The form view allows for detailed editing of author information and their books.
     The views also include actions to view books associated with each author.
  -->
+    <!-- Author List View -->
     <record id="view_library_author_list" model="ir.ui.view">
         <field name="name">library.author.list</field>
         <field name="model">library.author</field>
@@ -24,6 +25,7 @@
             </list>
         </field>
     </record>
+    <!-- Author Form View -->
    <record id="view_library_author_form" model="ir.ui.view">
         <field name="name">library.author.form</field>
         <field name="model">library.author</field>
@@ -53,6 +55,7 @@
             </form>
         </field>
     </record>
+    <!-- Action to open the author list -->
     <record id="view_library_author_form_tree" model="ir.ui.view">
         <field name="name">library.author.form.tree</field>
         <field name="model">library.author</field>
@@ -82,6 +85,7 @@
             </form>
         </field>
     </record>
+    <!-- Action to open the author list -->
     <record id="action_library_author" model="ir.actions.act_window">
         <field name="name">Authors</field>
         <field name="res_model">library.author</field>

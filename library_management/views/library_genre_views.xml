@@ -5,6 +5,7 @@
       The list view displays genres with their names and the number of books in each genre.
       The form view allows for detailed editing of genre information and their books.
     -->
+    <!-- Genre List View -->
     <record id="view_library_genre_list" model="ir.ui.view">
         <field name="name">library.genre.list</field>
         <field name="model">library.genre</field>
@@ -23,7 +24,7 @@
         </field>
     </record>
 
-
+    <!-- Genre Form View -->
     <record id="view_library_genre_form" model="ir.ui.view">
         <field name="name">library.genre.form</field>
         <field name="model">library.genre</field>
@@ -31,11 +32,13 @@
             <form>
                 <sheet class="library-genre-form">
                 <notebook>
+                    <!-- Genre Details Tab -->
                     <page string="Genre Details" >
                     <group class="group-primary">
                         <field name="name"/>
                     </group>
                     </page>
+                    <!-- Books in this Genre Tab -->
                         <page string="Books in this Genre" >
                             <field name="book_ids"/>
                             <field name="book_ids" context="{'default_genre_id': id}">
@@ -54,7 +57,7 @@
             </form>
         </field>
     </record>
-
+    <!-- book in this genre window (currently its the same as form view but can be customized later ) -->
     <record id="view_library_genre_form_tree" model="ir.ui.view">
         <field name="name">library.genre.form.tree</field>
         <field name="model">library.genre</field>
@@ -87,7 +90,7 @@
     
 
 
-
+    <!-- Action to open the genre list -->
     <record id="action_library_genre" model="ir.actions.act_window">
         <field name="name">Genres</field>
         <field name="res_model">library.genre</field>

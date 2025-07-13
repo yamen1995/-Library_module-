@@ -10,11 +10,14 @@ class LibraryAuthor(models.Model):
     _name = 'library.author'
     _description = 'Library Author'
 
-    name = fields.Char(string='Name', required=True)
-    book_ids = fields.One2many('library.book', 'author_id', string='Books')
-    book_count = fields.Integer(string="Book Count", compute="_compute_book_count")
+    name = fields.Char(string='Name', required=True) # Name of the author
+    book_ids = fields.One2many('library.book', 'author_id', string='Books') # List of books written by this author
+    book_count = fields.Integer(string="Book Count", compute="_compute_book_count") # Count of books written by this author
 
     def _compute_book_count(self):
+        """
+        Compute the number of books associated with this author.
+        """
         for author in self:
             author.book_count = len(author.book_ids)
     def action_view_books(self):

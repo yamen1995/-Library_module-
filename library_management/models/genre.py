@@ -10,14 +10,15 @@ class LibraryGenre(models.Model):
     _name = 'library.genre'
     _description = 'Book Genre'
 
-    name = fields.Char(string='Genre', required=True)
-    book_ids = fields.One2many('library.book', 'genre_id', string='Books')
+    name = fields.Char(string='Genre', required=True) # Name of the genre
+    book_ids = fields.One2many('library.book', 'genre_id', string='Books') # List of books in this genre
     _sql_constraints = [
         ('unique_genre_name', 'unique(name)', 'Genre name must be unique!')
-    ]
-    book_count = fields.Integer(string="Book Count", compute="_compute_book_count")
+    ] # Ensure genre names are unique
+    book_count = fields.Integer(string="Book Count", compute="_compute_book_count") # Count of books in this genre
 
     def _compute_book_count(self):
+        """Compute the number of books in this genre."""
         for genre in self:
             genre.book_count = len(genre.book_ids)
     def action_view_books(self):

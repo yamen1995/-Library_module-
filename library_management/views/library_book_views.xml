@@ -7,6 +7,7 @@
   The form view allows for detailed editing of borrow records, including dates and late fees.
     The search view enables filtering by book, borrower, and status.
     -->
+    <!-- book List View -->
  <record model="ir.ui.view" id="view_library_book_list">
     <field name="name">library.book.list</field>
     <field name="model">library.book</field>
@@ -35,7 +36,7 @@
         </list>
     </field>
  </record>
-
+    <!-- book Form View -->
     <record id="view_library_book_form" model="ir.ui.view">
     <field name="name">library.book.form</field>
     <field name="model">library.book</field>
@@ -76,7 +77,7 @@
         </form>
     </field>
 </record>
-
+    <!-- Action to open the book list -->
     <record id="action_library_book" model="ir.actions.act_window">
         <field name="name">Books</field>
         <field name="res_model">library.book</field>
@@ -94,7 +95,7 @@
             </search>
         </field>
     </record>
-
+    <!-- Action for book recommendations -->
     <record id="view_library_book_recommendations" model="ir.ui.view">
     <field name="name">library.book.recommendations</field>
     <field name="model">library.book</field>

@@ -5,6 +5,7 @@
     The list view displays members with their names, contact information, and membership status.
     The form view allows for detailed editing of member information and their borrow records.
   -->
+  <!-- member list view -->
   <record id="view_library_member_list" model="ir.ui.view">
     <field name="name">library.member.tree</field>
     <field name="model">library.member</field>
@@ -20,6 +21,7 @@
     </field>
   </record>
 
+  <!-- member form view -->
 <record id="view_library_member_form" model="ir.ui.view">
   <field name="name">library.member.form</field>
   <field name="model">library.member</field>
@@ -27,6 +29,7 @@
     <form>
       <sheet>
         <notebook>
+        <!-- Member Details Tab -->
           <page string="Member Details">
             <group class="group-primary">
               <field name="partner_id" context="{'default_is_company': False}" domain="[('is_company','=',False)]"/>
@@ -45,6 +48,7 @@
             
           </page>
 
+          <!-- Borrow Records Tab -->
           <page string="Borrow Records">
             <field name="borrow_record_ids" context="{'default_member_id': id}">
               <list editable="bottom">
@@ -55,7 +59,7 @@
               </list>
             </field>
           </page>
-
+          <!-- Books Borrowed Tab -->
           <page string="Borrowed Books">
             <field name="books_borrowed">
                                 <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
@@ -68,7 +72,7 @@
                                 </list>
             </field>
           </page>
-
+          <!-- Late Fees Tab -->
           <page string="Late Fees">
             <field name="late_fees">
               <list>
@@ -87,7 +91,7 @@
 </record>
 
   
-
+<!-- Search View for Library Members -->
 <record id="view_library_member_search" model="ir.ui.view">
   <field name="name">library.member.search</field>
   <field name="model">library.member</field>

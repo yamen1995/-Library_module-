@@ -12,26 +12,29 @@ class LibraryBook(models.Model):
     _description = 'Library Book'
     _rec_name = 'title'
 
-    title = fields.Char(string='Title', required=True)
-    author_id = fields.Many2one('library.author', string='Author')
-    description = fields.Text(string='Description')
-    publish_date = fields.Date(string='Publish Date')
-    is_available = fields.Boolean(string='Available', default=True)
+    title = fields.Char(string='Title', required=True) # Title of the book
+    author_id = fields.Many2one('library.author', string='Author') # Link to the author of the book
+    description = fields.Text(string='Description') # Description of the book
+    publish_date = fields.Date(string='Publish Date') # Date when the book was published
+    is_available = fields.Boolean(string='Available', default=True) # Indicates if the book is available for borrowing
     status_display = fields.Char(
         string="Status",
         compute="_compute_status_display",
         store=False
-    )
+    ) # Display status of the book based on availability
 
-    isbn = fields.Char(string='ISBN')
-    genre_id = fields.Many2one('library.genre', string='Genre')
+    isbn = fields.Char(string='ISBN') # ISBN of the book, used for identification
+    genre_id = fields.Many2one('library.genre', string='Genre') # Link to the genre of the book
     
     recommended_book_ids = fields.Many2many(
         'library.book', string="Recommended Books", compute="_compute_recommended_books"
-    )
+    ) # List of recommended books based on the genre of the current book
 
     @api.depends('genre_id')
     def _compute_recommended_books(self):
+        """
+        Compute recommended books based on the genre.
+        """
         for record in self:
             if record.genre_id:
                 record.recommended_book_ids = record.get_recommended_books()
@@ -48,6 +51,7 @@ class LibraryBook(models.Model):
 
     @api.constrains('isbn')
     def _check_isbn(self):
+        """ Validate ISBN format: must be 10 or 13 digits, only digits allowed. """
         for record in self:
             if record.isbn:
                 if not record.isbn.isdigit():
@@ -57,6 +61,7 @@ class LibraryBook(models.Model):
 
 
     def action_view_recommendations(self):
+        """ Action to view recommended books for the current book. """
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
@@ -93,6 +98,9 @@ class LibraryBook(models.Model):
         }
     @api.depends('is_available')
     def _compute_status_display(self):
+        """
+        Compute the display status of the book based on its availability.
+        """
         for record in self:
             if record.is_available:
                 record.status_display = "✅ Available"
