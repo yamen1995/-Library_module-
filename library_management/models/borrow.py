@@ -93,7 +93,7 @@ class LibraryBorrow(models.Model):
             else:
                 rec.due_countdown = ""
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals_list):
         """
         Override create to process book availability when a borrow record is created.

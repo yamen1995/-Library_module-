@@ -14,6 +14,7 @@
         'views/library_genre_views.xml',
         'views/library_member_views.xml',
         'views/menu.xml',
+        'data/library_tags.xml',
         ],
     'application': True,
     'installable': True,
