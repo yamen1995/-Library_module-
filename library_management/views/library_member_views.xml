@@ -103,8 +103,11 @@
       <field name="is_deleted_member"/>
       
       <filter name="active_members" string="Active Members" domain="[('is_active_member','=',True)]"/>
-      <filter name="inactive_members" string="Inactive Members" domain="[('is_active_member','=',False)]"/>
-      <filter name="deleted_members" string="Deleted Members" domain="[('is_deleted_member','=',True)]"/>
+      <filter name="inactive_members" string="Inactive Members" domain="['&amp;',('is_active_member','=',False),('is_deleted_member','=',False)]"/>
+      <filter name="deleted_members" string="Deleted Members" 
+        domain="[('is_deleted_member','=',True)]"
+        context="{'search_default_active': False}"
+        />
 
       <group expand="0" string="Group By">
         <filter name="group_by_status" string="Status" context="{'group_by':'is_active_member'}"/>

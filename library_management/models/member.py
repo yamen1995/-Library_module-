@@ -22,7 +22,7 @@ class LibraryMember(models.Model):
     member_since = fields.Date(default=fields.Date.today) # Date when the member joined the library
     is_active_member = fields.Boolean(default=True) # Indicates if the member is considered active for filtering or tagging.
     # Currently redundant with is_deleted_member, but allows flexible membership states.
-    
+
     borrow_record_ids = fields.One2many('library.borrow', 'borrower_id', string='Borrow Records')
     is_deleted_member = fields.Boolean(default=False) # Indicates if the member is soft deleted
     books_borrowed = fields.Many2many('library.book', compute='_compute_books_borrowed', string='Borrowed Books') # List of books currently borrowed by the member
@@ -72,7 +72,8 @@ class LibraryMember(models.Model):
         """
         self.is_deleted_member = True
         self.is_active_member = False
-        self.partner_id.active = False
+        #self.partner_id.active = False
+        #this line was removed because it require res.partner fields to be mirrored into member to work safely which is an overkill for current logic
         self._sync_partner_tag()
 
     @api.model_create_multi
