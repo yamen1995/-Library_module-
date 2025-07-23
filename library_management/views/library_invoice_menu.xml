@@ -1,0 +1,28 @@
+
+
+<odoo>
+  <!-- Add new main Library menu under Invoicing -->
+  <menuitem id="menu_invoice_library_root"
+            name="Library"
+            parent="account.menu_finance"
+            sequence="100"
+            groups="account.group_account_invoice"/>
+
+  <!-- Submenu: Books -->
+  <menuitem id="menu_invoice_library_books"
+            name="Books"
+            parent="menu_invoice_library_root"
+            action="action_library_books"/>
+
+  <!-- Submenu: Members -->
+  <menuitem id="menu_invoice_library_members"
+            name="Members"
+            parent="menu_invoice_library_root"
+            action="action_invoice_library_members"/>
+
+  <!-- Submenu: Membership Invoices -->
+  <menuitem id="menu_invoice_library_invoices"
+            name="Invoices"
+            parent="menu_invoice_library_root"
+            action="action_invoice_library_membership_invoices"/>
+</odoo>

@@ -1,0 +1,54 @@
+<odoo>
+<record id="product_library_late_fee" model="product.product">
+    <field name="name">Library Late Fee</field>
+    <field name="sale_ok">True</field>
+    <field name="type">service</field>
+    <field name="list_price">0.0</field>
+    <field name="is_library_membership">True</field>
+</record>
+
+  <!-- Library Subscription Product -->
+  
+  <record id="product_template_library_subscription" model="product.template">
+    <field name="name">Library Subscription</field>
+    <field name="sale_ok">True</field>
+    <field name="type">service</field>
+    <field name="list_price">15.0</field>
+    <field name="default_code">LIB-SUB</field>
+    <field name="is_library_membership">True</field>
+  </record>
+
+
+  <!-- Library Registration Fee Product -->
+   <record id="product_template_library_registration_temp" model="product.template">
+    <field name="name">Library Registration</field>
+    <field name="sale_ok">True</field>
+    <field name="type">service</field>
+    <field name="list_price">10.0</field>
+    <field name="default_code">LIB-REG</field>
+    <field name="is_library_membership">True</field>
+  </record>
+
+
+  <!-- Membership Extension Fee -->
+  <record id="product_template_library_extension" model="product.template">
+    <field name="name">Membership Extension</field>
+    <field name="sale_ok">True</field>
+    <field name="type">service</field>
+    <field name="list_price">8.0</field>
+    <field name="default_code">LIB-EXT</field>
+    <field name="is_library_membership">True</field>
+  </record>
+  
+  <!-- Premium Membership -->
+  <record id="product_template_library_premium" model="product.template">
+    <field name="name">Premium Membership</field>
+    <field name="sale_ok">True</field>
+    <field name="type">service</field>
+    <field name="list_price">25.0</field>
+    <field name="default_code">LIB-PREM</field>
+    <field name="is_library_membership">True</field>
+  </record>
+
+  
+</odoo>
