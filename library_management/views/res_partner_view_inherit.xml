@@ -1,11 +1,12 @@
 <odoo>
+<!-- library fields and actions for contacts module  -->
   <record id="view_partner_form_library_member" model="ir.ui.view">
     <field name="name">res.partner.form.library.member</field>
     <field name="model">res.partner</field>
     <field name="inherit_id" ref="base.view_partner_form"/>
     <field name="arch" type="xml">
 
-      <!-- Add Card ID field below Job Position -->
+
 <xpath expr="//notebook" position="inside">
   <page string="Library Info" invisible="not is_library_member">
     <group>

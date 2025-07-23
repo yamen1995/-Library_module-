@@ -1,4 +1,5 @@
 <odoo>
+<!-- views for membership request model  -->
   <record id="view_library_membership_request_form" model="ir.ui.view">
     <field name="name">library.membership.request.form</field>
     <field name="model">library.membership.request</field>

@@ -1,4 +1,5 @@
 <odoo>
+<!-- library card sequence  -->
     <record id="seq_library_member_card" model="ir.sequence">
     <field name="name">Library Member Card</field>
     <field name="code">library.member.card</field>

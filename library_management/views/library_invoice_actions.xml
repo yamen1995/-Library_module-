@@ -1,4 +1,5 @@
 <odoo>
+<!-- library actions for invoice module  -->
   <!-- Action for library books -->
   <record id="action_library_books" model="ir.actions.act_window">
     <field name="name">Books</field>

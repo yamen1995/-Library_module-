@@ -1,4 +1,7 @@
 <odoo>
+<!-- products data  -->
+
+<!-- late fees  -->
 <record id="product_library_late_fee" model="product.product">
     <field name="name">Library Late Fee</field>
     <field name="sale_ok">True</field>

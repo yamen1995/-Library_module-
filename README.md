@@ -39,7 +39,11 @@ library_management/
 ├── data/       # Contains demo CSV files
 └── static/
 ```
-
+## v1.1 change_logs
+1. add library info to contacts app by extending res.partner model and form view
+2. improved member logic 
+3. add membership request and membership product line models
+4. add library menu to invoice app by extending account views
 ## Demo Data
 
 The `data/` directory contains optional CSV files to populate:

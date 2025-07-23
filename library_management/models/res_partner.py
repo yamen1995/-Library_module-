@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-
+""""extending res.partner """
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 

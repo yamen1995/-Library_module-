@@ -1,5 +1,5 @@
 from odoo import models, fields
-
+"""" database model for membership lines """
 class LibraryMembershipLine(models.Model):
     _name = 'library.membership.line'
     _description = 'Library Membership Line'
