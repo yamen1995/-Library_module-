@@ -1,0 +1,41 @@
+<odoo>
+<!-- library actions for invoice module  -->
+  <!-- Action for library books -->
+  <record id="action_library_books" model="ir.actions.act_window">
+    <field name="name">Books</field>
+    <field name="res_model">library.book</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <!-- Action for library members (filtered res.partner) -->
+  <record id="action_invoice_library_members" model="ir.actions.act_window">
+    <field name="name">Library Members</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">list,form</field>
+    <field name="domain">[('is_library_member', '=', True)]</field>
+    <field name="context">{'default_is_library_member': 1}</field>
+  </record>
+
+  <!-- Action for membership-related invoices -->
+<record id="action_invoice_library_membership_invoices" model="ir.actions.act_window">
+  <field name="name">Membership Invoices</field>
+  <field name="res_model">account.move</field>
+  <field name="view_mode">list,form</field>
+  <field name="domain">
+    [
+      ('invoice_line_ids.product_id.product_tmpl_id.is_library_membership', '=', True),
+      ('move_type', '=', 'out_invoice')
+    ]
+  </field>
+</record>
+<record id="view_product_form_inherit_library" model="ir.ui.view">
+  <field name="name">product.template.form.inherit.library</field>
+  <field name="model">product.template</field>
+  <field name="inherit_id" ref="product.product_template_only_form_view"/>
+  <field name="arch" type="xml">
+    <xpath expr="//field[@name='type']" position="after">
+      <field name="is_library_membership"/>
+    </xpath>
+  </field>
+</record>
+</odoo>

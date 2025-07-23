@@ -12,7 +12,7 @@
     <field name="name">library.book.list</field>
     <field name="model">library.book</field>
     <field name="arch" type="xml">
-        <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+        <list js_class="library_book_list_rend" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
             <field name="title" width="200"/>
             <field name="author_id" width="175"/>
             <field name="genre_id" width="175"/>
@@ -62,7 +62,7 @@
                             You can suggest these recommended books to the client based on this book's genre.
                         </div>
                         <field name="recommended_book_ids"  readonly="1">
-                        <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                        <list js_class="library_book_list_rend" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
                             <field name="title" width="200"/>
                             <field name="author_id" width="175"/>
                             <field name="isbn" width="175"/>
@@ -106,7 +106,7 @@
                     You can suggest these recommended books to the client based on this book's genre.
                 </div>
                 <field name="recommended_book_ids"  readonly="1">
-                        <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                        <list js_class="library_book_list_rend" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
                             <field name="title" width="200"/>
                             <field name="author_id" width="175"/>
                             <field name="isbn" width="175"/>

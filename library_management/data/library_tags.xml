@@ -1,5 +1,0 @@
-<odoo>
-  <record id="partner_category_library_member" model="res.partner.category">
-    <field name="name">Library Member</field>
-  </record>
-</odoo>

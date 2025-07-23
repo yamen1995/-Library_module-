@@ -1,13 +1,32 @@
 <odoo>
     <!-- Top-Level Library Menu -->
     <menuitem id="menu_library_root" name="Library" sequence="30"/>
-
+    <menuitem id="menu_library_books_root" name="Books" parent="menu_library_root" sequence="10"/>
     <!-- Books Menu -->
     <menuitem id="menu_library_books" name="Books"
-              parent="menu_library_root"
+              parent="menu_library_books_root"
               action="action_library_book"
-              sequence="20"/>
+              sequence="1"/>
+    
+    <menuitem id="menu_library_members"
+                name="Members"
+                parent="menu_library_books_root"
+                sequence="2"
+                action="action_library_members"/>
 
+    <menuitem id="menu_library_membership_requests"
+            name="Membership Requests"
+            parent="menu_library_books_root"
+            sequence="3"
+            action="action_membership_requests"/>
+
+    <menuitem id="menu_library_invoices"
+            name="Invoices"
+            parent="menu_library_books_root"
+            sequence="4"
+            action="action_library_membership_invoices"/>
+
+    
     <!-- Authors Menu -->
     <menuitem id="menu_library_authors" name="Authors"
               parent="menu_library_root"
@@ -26,9 +45,6 @@
               action="action_library_genre"
               sequence="50"/>
     <!-- Members Menu -->
-    <menuitem id="menu_library_members"
-                name="Members"
-                parent="menu_library_root"
-                action="action_library_members"
-                sequence="60"/>
+
+
 </odoo>

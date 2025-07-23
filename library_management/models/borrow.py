@@ -2,85 +2,102 @@ from odoo import models, fields, api
 from odoo.exceptions import UserError
 from datetime import timedelta, date
 
+from odoo import models, fields, api
+from odoo.exceptions import UserError
+from datetime import timedelta, date
+
 class LibraryBorrow(models.Model):
-    """Model representing a book borrowing record in the library.
-    This model tracks which book is borrowed by which member, the dates of borrowing
-    and returning, and whether the book has been returned. It also handles the
-    computation of late fees and the state of the borrowing record.
-    """
     _name = 'library.borrow'
     _description = 'Borrowing Record'
 
-    # Fields
     book_id = fields.Many2one(
         'library.book', string='Book', required=True,
         domain=[('is_available', '=', True)]
-    ) # The book being borrowed, must be available
+    )
     borrower_id = fields.Many2one(
-        'library.member', string='Borrower', required=True
-    ) # The member borrowing the book
-    borrow_date = fields.Date(
-        string='Borrow Date', default=fields.Date.today
-    ) # The date when the book was borrowed
-    return_date = fields.Date(string='Return Date') # The date when the book is expected to be returned
-    is_returned = fields.Boolean(string='Returned', default=False) # Indicates if the book has been returned
-    late_fee_invoice_id = fields.Many2one('account.move', string="Late Fee Invoice", readonly=True, copy=False) # The invoice for late fees, if any
-    has_invoice = fields.Boolean(compute='_compute_has_invoice', string="Invoice") # Indicates if there is a late fee invoice associated with this record
+        'res.partner', string='Borrower', required=True,
+        domain=[('is_library_member', '=', True)]
+    )
+    card_id = fields.Char(string="Card ID", related='borrower_id.card_id', readonly=True)
 
-    state = fields.Selection(
-        [
-            ('draft', 'Draft'),
-            ('confirmed', 'Borrowed'),
-            ('overdue', 'Overdue'),
-            ('returned', 'Returned')
-        ],
-        string="Status", default='draft', store=True
-    ) # The current state of the borrowing record
+    borrow_date = fields.Date(string='Borrow Date', default=fields.Date.today)
+    return_date = fields.Date(string='Return Date')
+    is_returned = fields.Boolean(string='Returned', default=False)
+    late_fee_invoice_id = fields.Many2one('account.move', string="Late Fee Invoice", readonly=True, copy=False)
+    has_invoice = fields.Boolean(compute='_compute_has_invoice', string="Invoice", store=True)
 
-    due_countdown = fields.Char(
-        string="Due In", compute="_compute_due_countdown"
-    ) # Countdown until the return date or overdue days
+    borrow_state = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirmed', 'Borrowed'),
+        ('overdue', 'Overdue'),
+        ('returned', 'Returned')
+    ], string="Status", default='draft', store=True)
+
+    due_countdown = fields.Char(string="Due In", compute="_compute_due_countdown")
 
     @api.onchange('borrow_date')
     def _onchange_borrow_date(self):
-        """
-        Automatically set the return date to 7 days after the borrow date
-        when the borrow date is changed.
-        """
         if self.borrow_date:
-            borrow_date_obj = fields.Date.from_string(self.borrow_date)
-            return_date_obj = borrow_date_obj + timedelta(days=7)
-            self.return_date = fields.Date.to_string(return_date_obj)
+            self.return_date = self.borrow_date + timedelta(days=7)
 
-    
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for record in records:
+            record._validate_membership()
+
+            # Book availability (set False) without triggering write() again
+            if record.book_id and record.book_id.is_available:
+                record.book_id.sudo().write({'is_available': False})
+
+            record._compute_and_set_state()
+        return records
+
+    def write(self, vals):
+        res = super().write(vals)
+
+        # Only apply these if directly related fields were changed
+        if 'borrower_id' in vals:
+            for record in self:
+                record._validate_membership()
+
+        if 'book_id' in vals:
+            for record in self:
+                if record.book_id and record.book_id.is_available:
+                    record.book_id.sudo().write({'is_available': False})
+
+        # Don't recompute state unnecessarily (avoid loops)
+        if not any(field in vals for field in ['borrow_state', 'is_returned']):
+            self._compute_and_set_state()
+
+        return res
+
+    def _validate_membership(self):
+        today = fields.Date.today()
+        for record in self:
+            memberships = self.env['library.membership.request'].search([
+                ('partner_id', '=', record.borrower_id.id),
+                ('status', '=', 'active'),
+                ('request_date', '<=', today),
+                ('end_date', '>=', today),
+            ], limit=1)
+
+            if not memberships:
+                raise UserError("Borrower must have an active membership valid for today.")
+
     def _compute_and_set_state(self):
-        """
-        Compute the current state of the borrowing record:
-        - 'returned' if the book is returned
-        - 'overdue' if the return date has passed and not returned
-        - 'confirmed' if the book is borrowed and not overdue
-        - 'draft' otherwise
-        """
-        new_state = 'draft'
         today = fields.Date.today()
         for record in self:
             if record.is_returned:
-                new_state = 'returned'
+                record.borrow_state = 'returned'
             elif record.return_date and record.return_date < today:
-                new_state = 'overdue'
+                record.borrow_state = 'overdue'
             elif record.book_id:
-                new_state = 'confirmed'
+                record.borrow_state = 'confirmed'
             else:
-                new_state = 'draft'
-            if record.state != new_state:
-                record.state = new_state
+                record.borrow_state = 'draft'
 
-    @api.depends('return_date', 'is_returned')
     def _compute_due_countdown(self):
-        """
-        Compute a human-readable countdown until the return date,
-        or show how many days overdue the book is.
-        """
         for rec in self:
             if rec.return_date and not rec.is_returned:
                 days = (rec.return_date - date.today()).days
@@ -93,99 +110,20 @@ class LibraryBorrow(models.Model):
             else:
                 rec.due_countdown = ""
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        """
-        Override create to process book availability when a borrow record is created.
-        """
-        if isinstance(vals_list, dict):
-            vals_list = [vals_list]
-        records = super(LibraryBorrow, self).create(vals_list)
-        for record in records:
-            record._process_borrow()
-            record._compute_and_set_state()
-        return records
-
-    def write(self, vals):
-        """
-        Override write to process book availability when the book is changed.
-        """
-        res = super().write(vals)
-        self._compute_and_set_state()
-        if 'book_id' in vals:
-            self._process_borrow()
-        return res
-
-    def _process_borrow(self):
-        """
-        Handles book availability logic on borrow.
-        Raises an error if the book is already borrowed.
-        """
-        for record in self:
-            if record.book_id and not record.book_id.is_available:
-                raise UserError("Book is already borrowed!")
-            if record.book_id:
-                record.book_id.is_available = False
-
-    def action_mark_returned(self):
-        """
-        Mark the borrowing record as returned.
-        Shows a notification if some records were already returned.
-        """
-        skipped = []
-        for record in self:
-            if record.is_returned:
-                skipped.append(record.display_name)
-                continue
-            record.is_returned = True
-            record.book_id.is_available = True
-        # Calculate late fee
-        late_days = 0
-        fee_per_day = 2.0 
-        today = fields.Date.today()
-
-        if record.return_date and today > record.return_date:
-            late_days = (today - record.return_date).days
-
-        if late_days > 0:
-            total_fee = late_days * fee_per_day
-            record._create_late_fee_invoice(total_fee)
-
-        if skipped:
-            message = "Some records were already returned: %s" % ", ".join(skipped)
-            notif_type = "warning"
-        else:
-            message = "Marked as returned successfully!"
-            notif_type = "success"
-
-        return {
-            "type": "ir.actions.client",
-            "tag": "display_notification",
-            "params": {
-                "title": "Return Status",
-                "message": message,
-                "type": notif_type,
-                "sticky": False,
-                "next": {
-                    "type": "ir.actions.client",
-                    "tag": "reload",
-                }
-            }
-        }
-       
     def _create_late_fee_invoice(self, amount):
-        """
-        Create a late fee invoice for the borrower.
-        """
         if not self.borrower_id:
-            return
+            raise UserError("No borrower set. Cannot generate late fee invoice.")
+
+        late_fee_product = self.env.ref('library_management.product_library_late_fee', raise_if_not_found=False)
+        if not late_fee_product:
+            raise UserError("Late fee product not configured. Please define a product with XML ID 'product_library_late_fee'.")
 
         invoice_vals = {
             'move_type': 'out_invoice',
-            'state': 'draft',
             'partner_id': self.borrower_id.id,
             'invoice_date': fields.Date.today(),
             'invoice_line_ids': [(0, 0, {
+                'product_id': late_fee_product.id,
                 'name': f'Late return fee for "{self.book_id.title}"',
                 'quantity': 1,
                 'price_unit': amount,
@@ -193,9 +131,44 @@ class LibraryBorrow(models.Model):
         }
         invoice = self.env['account.move'].create(invoice_vals)
         self.late_fee_invoice_id = invoice.id
+        return invoice
 
     @api.depends('late_fee_invoice_id')
     def _compute_has_invoice(self):
-        """Compute whether the record has an associated late fee invoice."""
         for record in self:
             record.has_invoice = bool(record.late_fee_invoice_id)
+
+    def action_mark_returned(self):
+        skipped = []
+        for record in self:
+            if record.is_returned:
+                skipped.append(record.display_name)
+                continue
+
+            record.is_returned = True
+
+            # Mark book as available
+            if record.book_id:
+                record.book_id.sudo().write({'is_available': True})
+
+            # Generate late fee if overdue
+            today = fields.Date.today()
+            if record.return_date and today > record.return_date:
+                late_days = (today - record.return_date).days
+                total_fee = late_days * 2.0
+                record._create_late_fee_invoice(total_fee)
+
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": "Return Status",
+                "message": (
+                    "Some records were already returned: %s" % ", ".join(skipped)
+                    if skipped else "Marked as returned successfully!"
+                ),
+                "type": "warning" if skipped else "success",
+                "sticky": False,
+                "next": {"type": "ir.actions.client", "tag": "reload"},
+            }
+        }

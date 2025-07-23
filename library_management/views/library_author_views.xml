@@ -41,7 +41,7 @@
                 <page string="Books by this Author" >
                     <group>
                         <field name="book_ids">
-                            <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                            <list js_class="library_book_list_rend" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
                                 <field name="title" width="200"/>
                                 <field name="author_id" width="175"/>
                                 <field name="isbn" width="175"/>
@@ -71,7 +71,7 @@
                     <page string="Books by this Author">
                         <group>
                             <field name="book_ids">
-                                <list js_class="library_book_list" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
+                                <list js_class="library_book_list_rend" decoration-success="is_available" decoration-danger="not is_available" class="library-book-list">
                                     <field name="title" width="200"/>
                                     <field name="author_id" width="175"/>
                                     <field name="isbn" width="175"/>

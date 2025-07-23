@@ -192,4 +192,4 @@ const LibraryBookListView = {
     fields: ["name", "description"],
 };
 
-registry.category("views").add("library_book_list", LibraryBookListView);
+registry.category("views").add("library_book_list_rend", LibraryBookListView);

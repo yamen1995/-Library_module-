@@ -1,0 +1,10 @@
+<odoo>
+<!-- library card sequence  -->
+    <record id="seq_library_member_card" model="ir.sequence">
+    <field name="name">Library Member Card</field>
+    <field name="code">library.member.card</field>
+    <field name="prefix">LIB</field>
+    <field name="padding">5</field>
+    <field name="number_next">1</field>
+  </record>
+</odoo>
