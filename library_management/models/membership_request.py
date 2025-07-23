@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from datetime import timedelta
+from odoo.exceptions import UserError
 """"database model for membership requests """
 class LibraryMembershipRequest(models.Model):
     _name = 'library.membership.request'
