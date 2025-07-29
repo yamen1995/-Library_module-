@@ -17,6 +17,8 @@
         'security/ir.model.access.csv',
         'data/product_data.xml',
         'data/sequence.xml',
+        'views/membership_request_report_template.xml',
+        'views/membership_report.xml',
         'views/library_book_views.xml',
         'views/library_author_views.xml',
         'views/library_borrow_views.xml',

@@ -1,0 +1,9 @@
+<odoo>
+  <record id="action_report_membership_request" model="ir.actions.report">
+    <field name="name">Membership Request</field>
+    <field name="model">library.membership.request</field>
+    <field name="report_type">qweb-pdf</field>
+    <field name="report_name">library_management.membership_request_report_template</field>
+    <field name="print_report_name">'Membership_Request_%s' % (object.id)</field>
+  </record>
+</odoo>

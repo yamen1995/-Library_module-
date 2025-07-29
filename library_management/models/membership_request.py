@@ -76,3 +76,6 @@ class LibraryMembershipRequest(models.Model):
     def _onchange_request_date(self):
         if self.request_date:
             self.end_date = self.request_date + timedelta(days=30)
+    
+    def print_membership_request(self):
+        return self.env.ref('library_management.action_report_membership_request').report_action(self)
