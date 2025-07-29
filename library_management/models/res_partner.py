@@ -29,7 +29,7 @@ class ResPartner(models.Model):
 
     def action_view_memberships(self):
         return {
-            'name': 'Library Memberships',
+            'name': _('Library Memberships'),
             'type': 'ir.actions.act_window',
             'res_model': 'res.partner',
             'view_mode': 'list,form',

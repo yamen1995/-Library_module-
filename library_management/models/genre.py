@@ -10,7 +10,7 @@ class LibraryGenre(models.Model):
     _name = 'library.genre'
     _description = 'Book Genre'
 
-    name = fields.Char(string='Genre', required=True) # Name of the genre
+    name = fields.Char(string='Genre', required=True, ) # Name of the genre
     book_ids = fields.One2many('library.book', 'genre_id', string='Books') # List of books in this genre
     _sql_constraints = [
         ('unique_genre_name', 'unique(name)', 'Genre name must be unique!')
@@ -26,7 +26,7 @@ class LibraryGenre(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Books in Genre: %s' % self.name,
+            'name': _('Books in Genre: %s') % self.name,
             'res_model': 'library.genre',
             'res_id': self.id,
             'view_mode': 'form',

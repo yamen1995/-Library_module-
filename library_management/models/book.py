@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import _, models, fields, api
 from odoo.exceptions import ValidationError
 
 class LibraryBook(models.Model):
@@ -55,9 +55,9 @@ class LibraryBook(models.Model):
         for record in self:
             if record.isbn:
                 if not record.isbn.isdigit():
-                    raise ValidationError("ISBN must contain only digits.")
+                    raise ValidationError(_("ISBN must contain only digits."))
                 if len(record.isbn) not in (10, 13):
-                    raise ValidationError("ISBN must be either 10 or 13 digits long.")
+                    raise ValidationError(_("ISBN must be either 10 or 13 digits long."))
 
 
     def action_view_recommendations(self):
@@ -65,7 +65,7 @@ class LibraryBook(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Recommendations',
+            'name': _('Recommendations'),
             'res_model': 'library.book',
             'res_id': self.id,
             'view_mode': 'form',
@@ -81,8 +81,8 @@ class LibraryBook(models.Model):
                 "type": "ir.actions.client",
                 "tag": "display_notification",
                 "params": {
-                    "title": "Unavailable Book",
-                    "message": f'"{self.title}" is currently not available for borrowing.',
+                    "title": _("Unavailable Book"),
+                    "message": _('"%s" is currently not available for borrowing.') % self.title,
                     "type": "warning",
                     "sticky": False,
                 }
@@ -90,7 +90,7 @@ class LibraryBook(models.Model):
 
         return {
             'type': 'ir.actions.act_window',
-            'name': 'New Borrow',
+            'name': _('New Borrow'),
             'res_model': 'library.borrow',
             'view_mode': 'form',
             'target': 'new',
@@ -103,6 +103,6 @@ class LibraryBook(models.Model):
         """
         for record in self:
             if record.is_available:
-                record.status_display = "✅ Available"
+                record.status_display = _("✅ Available")
             else:
-                record.status_display = "❌ Unavailable"
+                record.status_display = _("❌ Unavailable")

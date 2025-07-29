@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import _,models, fields, api
 from odoo.exceptions import UserError
 from datetime import timedelta, date
 
@@ -83,7 +83,7 @@ class LibraryBorrow(models.Model):
             ], limit=1)
 
             if not memberships:
-                raise UserError("Borrower must have an active membership valid for today.")
+                raise UserError(_("Borrower must have an active membership valid for today."))
 
     def _compute_and_set_state(self):
         today = fields.Date.today()
@@ -102,21 +102,21 @@ class LibraryBorrow(models.Model):
             if rec.return_date and not rec.is_returned:
                 days = (rec.return_date - date.today()).days
                 if days > 0:
-                    rec.due_countdown = f"{days} days left"
+                    rec.due_countdown = _('%(days)s days left') % {'days': days}
                 elif days == 0:
-                    rec.due_countdown = "Due today"
+                    rec.due_countdown = _('Due today')
                 else:
-                    rec.due_countdown = f"Overdue by {abs(days)} days"
+                    rec.due_countdown = _('Overdue by %(days)s days') % {'days': abs(days)}
             else:
-                rec.due_countdown = ""
+                rec.due_countdown = ''
 
     def _create_late_fee_invoice(self, amount):
         if not self.borrower_id:
-            raise UserError("No borrower set. Cannot generate late fee invoice.")
+            raise UserError(_("No borrower set. Cannot generate late fee invoice."))
 
         late_fee_product = self.env.ref('library_management.product_library_late_fee', raise_if_not_found=False)
         if not late_fee_product:
-            raise UserError("Late fee product not configured. Please define a product with XML ID 'product_library_late_fee'.")
+            raise UserError(_("Late fee product not configured. Please define a product with XML ID 'product_library_late_fee'."))
 
         invoice_vals = {
             'move_type': 'out_invoice',
@@ -124,7 +124,7 @@ class LibraryBorrow(models.Model):
             'invoice_date': fields.Date.today(),
             'invoice_line_ids': [(0, 0, {
                 'product_id': late_fee_product.id,
-                'name': f'Late return fee for "{self.book_id.title}"',
+                'name': _('Late return fee for "%(title)s"') % {'title': self.book_id.title},
                 'quantity': 1,
                 'price_unit': amount,
             })]
@@ -162,10 +162,10 @@ class LibraryBorrow(models.Model):
             "type": "ir.actions.client",
             "tag": "display_notification",
             "params": {
-                "title": "Return Status",
+                "title": _("Return Status"),
                 "message": (
-                    "Some records were already returned: %s" % ", ".join(skipped)
-                    if skipped else "Marked as returned successfully!"
+                    _("Some records were already returned: %s" )% ", ".join(skipped)
+                    if skipped else _("Marked as returned successfully!")
                 ),
                 "type": "warning" if skipped else "success",
                 "sticky": False,

@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import _,models, fields
 
 class LibraryAuthor(models.Model):
     ''' Library Author Model
@@ -25,7 +25,7 @@ class LibraryAuthor(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Books by Author: %s' % self.name,
+            'name': _('Books by Author: %s') % self.name,
             'res_model': 'library.author',
             'res_id': self.id,
             'view_mode': 'form',

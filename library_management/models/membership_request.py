@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import _,models, fields, api
 from datetime import timedelta
 from odoo.exceptions import UserError
 """"database model for membership requests """
@@ -32,14 +32,16 @@ class LibraryMembershipRequest(models.Model):
     def _compute_name(self):
         for record in self:
             if record.partner_id:
-                record.name = f"{record.partner_id.name} Membership Request"
+                record.name = _('%(partner)s Membership Request') % {
+                    'partner': record.partner_id.name
+                }
             else:
-                record.name = "Membership Request"
+                record.name = _('Membership Request')
 
     def action_generate_invoice(self):
         self.ensure_one()
         if not self.membership_line_ids:
-            raise UserError("Please add at least one membership line.")
+            raise UserError(_("Please add at least one membership line."))
 
         invoice_lines = []
         for line in self.membership_line_ids:
