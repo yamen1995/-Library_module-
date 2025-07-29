@@ -6,54 +6,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 16:34+0000\n"
-"PO-Revision-Date: 2025-07-29 16:34+0000\n"
+"POT-Creation-Date: 2025-07-29 20:29+0000\n"
+"PO-Revision-Date: 2025-07-29 20:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: ar\n"
-"X-Generator: Poedit 3.4.2\n"
-
-#. module: library_management
-#: model:ir.model,name:library_management.model_library_management
-msgid "Library Management"
-msgstr "إدارة المكتبة"
-
-#. module: library_management
-#: model:ir.module.module,description:base.module_library_management
-msgid "A simple Library Management system for Odoo."
-msgstr "نظام بسيط لإدارة المكتبات لأودو."
-
-#. module: library_management
-#: model:ir.module.module,shortdesc:base.module_library_management
-msgid "Library Management"
-msgstr "إدارة المكتبة"
-
-#. module: library_management
-#: model:ir.module.module,summary:base.module_library_management
-msgid "Manage books, authors, and borrowing records"
-msgstr "إدارة الكتب والمؤلفين وسجلات الإعارة"
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/book.py:0
 msgid "\"%s\" is currently not available for borrowing."
-msgstr "\"%s\" غير متاح للإعارة حالياً."
+msgstr ""
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "%(days)s days left"
-msgstr "باقي %(days)s يوم"
+msgstr ""
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/membership_request.py:0
 msgid "%(partner)s Membership Request"
-msgstr "طلب عضوية %(partner)s"
+msgstr ""
+
+#. module: library_management
+#: model:ir.actions.report,print_report_name:library_management.action_report_membership_request
+msgid "'Membership_Request_%s' % (object.id)"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>Card ID:</strong>"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>End Date:</strong>"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>Invoice:</strong>"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>Member:</strong>"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>Name:</strong>"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>Payment Terms:</strong>"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>Registration Date:</strong>"
+msgstr ""
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "<strong>Status:</strong>"
+msgstr ""
 
 #. module: library_management
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_form
@@ -71,8 +94,6 @@ msgid "Are you sure you want to mark as returned?"
 msgstr "هل أنت متأكد أنك تريد تعليمه كمعاد؟"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__author_id
 msgid "Author"
 msgstr "المؤلف"
@@ -90,23 +111,17 @@ msgid "Authors"
 msgstr "المؤلفون"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__is_available
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_book_search
 msgid "Available"
 msgstr "متاح"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__book_id
 msgid "Book"
 msgstr "كتاب"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/author.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_author__book_count
 #: model:ir.model.fields,field_description:library_management.field_library_genre__book_count
 msgid "Book Count"
@@ -118,8 +133,6 @@ msgid "Book Genre"
 msgstr "نوع الكتاب"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/author.py:0
 #: model:ir.actions.act_window,name:library_management.action_library_book
 #: model:ir.actions.act_window,name:library_management.action_library_books
 #: model:ir.model.fields,field_description:library_management.field_library_author__book_ids
@@ -134,7 +147,7 @@ msgstr "كتب"
 #. odoo-python
 #: code:addons/library_management/models/author.py:0
 msgid "Books by Author: %s"
-msgstr "كتب المؤلف: %s"
+msgstr ""
 
 #. module: library_management
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_author_form
@@ -146,7 +159,7 @@ msgstr "كتب هذا المؤلف"
 #. odoo-python
 #: code:addons/library_management/models/genre.py:0
 msgid "Books in Genre: %s"
-msgstr "كتب النوع: %s"
+msgstr ""
 
 #. module: library_management
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_genre_form
@@ -155,8 +168,6 @@ msgid "Books in this Genre"
 msgstr "كتب هذا النوع"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__borrow_date
 msgid "Borrow Date"
 msgstr "تاريخ الإعارة"
@@ -186,8 +197,6 @@ msgid "Borrowed Books"
 msgstr "كتب معارة"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__borrower_id
 msgid "Borrower"
 msgstr "المستعير"
@@ -196,7 +205,7 @@ msgstr "المستعير"
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "Borrower must have an active membership valid for today."
-msgstr "يجب أن يكون للمستعير عضوية نشطة صالحة ليومنا هذا."
+msgstr ""
 
 #. module: library_management
 #: model:ir.model,name:library_management.model_library_borrow
@@ -204,8 +213,6 @@ msgid "Borrowing Record"
 msgstr "سجل الإعارة"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__card_id
 #: model:ir.model.fields,field_description:library_management.field_library_membership_request__card_id
 #: model:ir.model.fields,field_description:library_management.field_res_partner__card_id
@@ -260,8 +267,6 @@ msgid "Current Books"
 msgstr "الكتب الحالية"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__description
 msgid "Description"
 msgstr "الوصف"
@@ -291,7 +296,7 @@ msgstr "موعد الإعادة"
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "Due today"
-msgstr "مستحق اليوم"
+msgstr ""
 
 #. module: library_management
 #: model:ir.model.fields,field_description:library_management.field_library_membership_request__end_date
@@ -304,8 +309,6 @@ msgid "Generate Invoice"
 msgstr "إنشاء فاتورة"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__genre_id
 #: model:ir.model.fields,field_description:library_management.field_library_genre__name
 msgid "Genre"
@@ -341,23 +344,21 @@ msgstr "المعرف"
 #. module: library_management
 #: model:ir.model.fields,field_description:library_management.field_library_book__isbn
 msgid "ISBN"
-msgstr "ردمك"
+msgstr "ISBN"
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/book.py:0
 msgid "ISBN must be either 10 or 13 digits long."
-msgstr "يجب أن يتكون الرقم الدولي من 10 أو 13 خانة."
+msgstr "ان يكون 10 او 13 رقما تماما 'ISBN' على "
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/book.py:0
 msgid "ISBN must contain only digits."
-msgstr "يجب أن يحتوي الرقم الدولي على أرقام فقط."
+msgstr "على ISBN ان يتألف من ارقام فقط"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__has_invoice
 #: model:ir.model.fields,field_description:library_management.field_library_membership_request__invoice_id
 msgid "Invoice"
@@ -396,8 +397,6 @@ msgid "Last Updated on"
 msgstr "آخر تحديث في"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__late_fee_invoice_id
 msgid "Late Fee Invoice"
 msgstr "فاتورة غرامة التأخير"
@@ -415,13 +414,13 @@ msgstr "غرامات التأخير"
 msgid ""
 "Late fee product not configured. Please define a product with XML ID "
 "'product_library_late_fee'."
-msgstr "لم يتم تهيئة منتج الغرامة. يرجى تعريف منتج بالمعرف 'product_library_late_fee'."
+msgstr ""
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "Late return fee for \"%(title)s\""
-msgstr "رسوم تأخير إعادة \"%(title)s\""
+msgstr ""
 
 #. module: library_management
 #: model:ir.ui.menu,name:library_management.menu_invoice_library_root
@@ -468,6 +467,7 @@ msgstr "منتج عضوية المكتبة"
 
 #. module: library_management
 #: model:ir.model,name:library_management.model_library_membership_request
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
 msgid "Library Membership Request"
 msgstr "طلب عضوية المكتبة"
 
@@ -475,7 +475,7 @@ msgstr "طلب عضوية المكتبة"
 #. odoo-python
 #: code:addons/library_management/models/res_partner.py:0
 msgid "Library Memberships"
-msgstr "عضوية المكتبة"
+msgstr "عضويات ابمكتبة"
 
 #. module: library_management
 #: model:product.template,name:library_management.product_template_library_registration_temp
@@ -498,7 +498,7 @@ msgstr "تعليم كمعاد"
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "Marked as returned successfully!"
-msgstr "تم التعليم كمعاد بنجاح!"
+msgstr "تم تعليم الكتاب كمعاد بنجاح"
 
 #. module: library_management
 #: model:ir.model.fields,field_description:library_management.field_library_membership_request__partner_id
@@ -536,12 +536,14 @@ msgstr "بند العضوية"
 
 #. module: library_management
 #: model:ir.model.fields,field_description:library_management.field_library_membership_request__membership_line_ids
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
 msgid "Membership Lines"
 msgstr "بنود العضوية"
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/membership_request.py:0
+#: model:ir.actions.report,name:library_management.action_report_membership_request
 #: model:ir.model.fields,field_description:library_management.field_library_membership_line__request_id
 msgid "Membership Request"
 msgstr "طلب العضوية"
@@ -549,6 +551,7 @@ msgstr "طلب العضوية"
 #. module: library_management
 #: model:ir.actions.act_window,name:library_management.action_membership_requests
 #: model:ir.ui.menu,name:library_management.menu_library_membership_requests
+#: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_tree
 msgid "Membership Requests"
 msgstr "طلبات العضوية"
 
@@ -560,8 +563,6 @@ msgid "Memberships"
 msgstr "العضويات"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/author.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_author__name
 #: model:ir.model.fields,field_description:library_management.field_library_membership_request__name
 msgid "Name"
@@ -571,13 +572,13 @@ msgstr "الاسم"
 #. odoo-python
 #: code:addons/library_management/models/book.py:0
 msgid "New Borrow"
-msgstr "إعارة جديدة"
+msgstr "اعارة جديدة"
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "No borrower set. Cannot generate late fee invoice."
-msgstr "لم يتم تعيين مستعير. لا يمكن إنشاء فاتورة غرامة."
+msgstr "يرجى اختيار العضو المستعير"
 
 #. module: library_management
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_borrow_search
@@ -600,7 +601,7 @@ msgstr "متأخر"
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "Overdue by %(days)s days"
-msgstr "متأخر %(days)s يوم"
+msgstr "متأخر %(days)s ايام"
 
 #. module: library_management
 #: model:ir.model.fields.selection,name:library_management.selection__library_membership_request__status__paid
@@ -616,7 +617,7 @@ msgstr "شروط الدفع"
 #. odoo-python
 #: code:addons/library_management/models/membership_request.py:0
 msgid "Please add at least one membership line."
-msgstr "الرجاء إضافة بند عضوية واحد على الأقل."
+msgstr "يرجى اضافة بنود العضوية"
 
 #. module: library_management
 #: model:product.template,name:library_management.product_template_library_premium
@@ -625,8 +626,25 @@ msgstr "عضوية مميزة"
 
 #. module: library_management
 #: model:ir.model.fields,field_description:library_management.field_library_membership_line__price_unit
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
 msgid "Price"
 msgstr "السعر"
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_form
+#: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_tree
+msgid "Print Request"
+msgstr "طباعة"
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_tree
+msgid "Print Selected"
+msgstr "طباعة"
+
+#. module: library_management
+#: model:ir.actions.server,name:library_management.action_membership_request_mass_print
+msgid "Print Selected Membership Requests"
+msgstr "طباعة"
 
 #. module: library_management
 #: model:ir.model,name:library_management.model_product_template
@@ -635,8 +653,6 @@ msgid "Product"
 msgstr "المنتج"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__publish_date
 msgid "Publish Date"
 msgstr "تاريخ النشر"
@@ -655,8 +671,6 @@ msgid "Recommendations"
 msgstr "توصيات"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__recommended_book_ids
 msgid "Recommended Books"
 msgstr "كتب موصى بها"
@@ -667,8 +681,6 @@ msgid "Registration Date"
 msgstr "تاريخ التسجيل"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__return_date
 msgid "Return Date"
 msgstr "تاريخ الإعادة"
@@ -677,11 +689,9 @@ msgstr "تاريخ الإعادة"
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "Return Status"
-msgstr "حالة الإعادة"
+msgstr "الحالة"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/borrow.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__is_returned
 #: model:ir.model.fields.selection,name:library_management.selection__library_borrow__borrow_state__returned
 msgid "Returned"
@@ -701,11 +711,9 @@ msgstr "بحث في سجلات الإعارة"
 #. odoo-python
 #: code:addons/library_management/models/borrow.py:0
 msgid "Some records were already returned: %s"
-msgstr "بعض السجلات تم إعادتها مسبقاً: %s"
+msgstr "بعض الكتب معادة فعلا %s"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management.models.book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__status_display
 #: model:ir.model.fields,field_description:library_management.field_library_borrow__borrow_state
 #: model:ir.model.fields,field_description:library_management.field_library_membership_request__status
@@ -713,8 +721,6 @@ msgid "Status"
 msgstr "الحالة"
 
 #. module: library_management
-#. odoo-python
-#: code:addons/library_management/models/book.py:0
 #: model:ir.model.fields,field_description:library_management.field_library_book__title
 msgid "Title"
 msgstr "العنوان"
@@ -723,7 +729,7 @@ msgstr "العنوان"
 #. odoo-python
 #: code:addons/library_management/models/book.py:0
 msgid "Unavailable Book"
-msgstr "كتاب غير متاح"
+msgstr "الكتاب غير متوفر"
 
 #. module: library_management
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_author_list
@@ -745,13 +751,23 @@ msgid ""
 msgstr "يمكنك اقتراح هذه الكتب للعميل بناءً على نوع هذا الكتاب."
 
 #. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "currency unit"
+msgstr "العملة"
+
+#. module: library_management
+#: model_terms:ir.ui.view,arch_db:library_management.membership_request_report_template
+msgid "supscription"
+msgstr "الاشتراك"
+
+#. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/book.py:0
 msgid "✅ Available"
-msgstr "✅ متاح"
+msgstr "✅ متوفر"
 
 #. module: library_management
 #. odoo-python
 #: code:addons/library_management/models/book.py:0
 msgid "❌ Unavailable"
-msgstr "❌ غير متاح"
+msgstr "❌ غير متوفر"
