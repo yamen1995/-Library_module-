@@ -10,12 +10,24 @@
     </field>
 </record>
 
+<record id="action_membership_request_print_all" model="ir.actions.server">
+    <field name="name">Print All Membership Requests</field>
+    <field name="model_id" ref="model_library_membership_request"/>
+    <field name="state">code</field>
+    <field name="code">
+        action = env['library.membership.request'].search([]).print_membership_request()
+    </field>
+</record>
+
   <record id="view_library_membership_request_tree" model="ir.ui.view">
     <field name="name">library.membership.request.tree</field>
     <field name="model">library.membership.request</field>
     <field name="arch" type="xml">
       <list string="Membership Requests">
-       <header><button name="print_membership_request" string="Print Selected" type="object" /></header>
+       <header>
+       <button name="print_membership_request" string="Print Selected" type="object" />
+       <button name="%(action_membership_request_print_all)d" string="Print All" type="action" class="oe_highlight"/>
+       </header>
         <field name="name"/>
         <field name="partner_id"/>
         <field name="request_date"/>

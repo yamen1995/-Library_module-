@@ -633,18 +633,18 @@ msgstr "السعر"
 #. module: library_management
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_form
 #: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_tree
-msgid "Print Request"
-msgstr "طباعة"
+msgid "Print All Membership Requests"
+msgstr "طباعة جميع الطلبات"  
 
-#. module: library_management
-#: model_terms:ir.ui.view,arch_db:library_management.view_library_membership_request_tree
+#. xml view button
 msgid "Print Selected"
-msgstr "طباعة"
+msgstr "طباعة المحدد"
 
-#. module: library_management
-#: model:ir.actions.server,name:library_management.action_membership_request_mass_print
-msgid "Print Selected Membership Requests"
-msgstr "طباعة"
+msgid "Print All"
+msgstr "طباعة الكل"
+
+msgid "Print Membership Report"
+msgstr "تقرير العضوية"
 
 #. module: library_management
 #: model:ir.model,name:library_management.model_product_template
